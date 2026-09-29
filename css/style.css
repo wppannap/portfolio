@@ -982,6 +982,8 @@ section { padding: clamp(56px, 8vw, 96px) 0; }
   height: 100%;
   object-fit: cover;
   object-position: center 22%;        /* bias upward so faces stay in frame */
+  transform: scale(1.25);             /* zoom in ~25% so top/bottom ~10% is cropped */
+  transform-origin: center 22%;       /* keep the bias point stable while zooming */
   border-radius: var(--radius);
   border: 1px solid var(--c-line-soft);
   background: var(--c-bg-alt);
