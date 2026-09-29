@@ -188,6 +188,41 @@ section { padding: clamp(56px, 8vw, 96px) 0; }
 .section-head { margin-bottom: clamp(28px, 4vw, 44px); max-width: 70ch; }
 .section-head .eyebrow { display: block; }
 
+/* Section-lede: the H2 inside the Projects section reads as supporting
+   copy, not a peer to case-study titles. Tone it down so it doesn't compete. */
+#projects .section-head > h2 {
+  font-family: var(--f-sans);
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--c-ink-soft);
+  margin: 0;
+  max-width: 60ch;
+}
+
+/* Case-study titles are the real headings inside Projects.
+   Make them clearly larger and ground them with an accent rule. */
+.case-head h3 {
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.3em;
+  position: relative;
+  padding-bottom: 0.55em;
+}
+.case-head h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 44px;
+  height: 3px;
+  background: var(--c-accent);
+  border-radius: 2px;
+}
+
 .skip-link {
   position: absolute; top: -100px; left: 16px;
   background: var(--c-accent); color: #fff;
