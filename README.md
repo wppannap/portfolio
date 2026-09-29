@@ -29,13 +29,13 @@ portfolio/
     │   ├── hero-visual.png
     │   ├── profile-photo.jpg
     │   ├── p1-cluster-scatter.png
-    │   ├── p1-data-flow.png
+    │   ├── p1-correlation-heatmap.png
     │   ├── p2-pca-scatter.png
     │   ├── p2-scree.png
     │   ├── p2-biplot.png
     │   ├── p2-elbow.png
-    │   ├── p3-mock-dashboard.png
-    │   └── p3-process.png
+    │   ├── p4-er-diagram.png
+    │   └── (p3-mock-dashboard.png intentionally absent)
     └── docs/
         └── CV_Chin_Pang_Chow.pdf    ← you must add this file
 ```
@@ -109,13 +109,12 @@ hidden — but you must drop your own files into the right places.
 | Hero visual                      | `assets/img/hero-visual.png` |
 | Profile photo                   | `assets/img/profile-photo.jpg` |
 | Project 1 cluster scatter       | `assets/img/p1-cluster-scatter.png` |
-| Project 1 data flow             | `assets/img/p1-data-flow.png` |
+| Project 1 correlation heatmap   | `assets/img/p1-correlation-heatmap.png` |
 | Project 2 PCA scatter           | `assets/img/p2-pca-scatter.png` |
 | Project 2 scree plot            | `assets/img/p2-scree.png` |
 | Project 2 biplot                | `assets/img/p2-biplot.png` |
 | Project 2 elbow plot            | `assets/img/p2-elbow.png` |
-| Project 3 mock dashboard        | `assets/img/p3-mock-dashboard.png` |
-| Project 3 process diagram       | `assets/img/p3-process.png` |
+| Project 4 ER diagram (COMP2016) | `assets/img/p4-er-diagram.png` |
 
 Just overwrite the placeholder file with the same name — the page picks it
 up automatically. If the file is missing, a styled placeholder shows up
@@ -135,6 +134,22 @@ placeholders with real GitHub and LinkedIn URLs.
 
 Search the project for `[placeholder]` (Ctrl/Cmd-Shift-F). Every visible
 one is intentional and meant to be replaced.
+
+### 5. Project 3 dashboard (`assets/img/p3-mock-dashboard.png`)
+
+This is intentionally **missing** — the original internship figures are
+confidential. The caption has been updated to flag the slot as pending;
+the page now shows a placeholder there. Three options:
+  (a) supply a redacted / sample-data version you are allowed to publish,
+  (b) replace the figure with the existing `p3-process.png` diagram only,
+  (c) remove the figure and its `<figure>` block from `index.html`.
+
+### 6. Profile photo (`assets/img/profile-photo.jpg`)
+
+Drop any JPG/PNG into this slot. The two photos that would normally
+come from `Internship_Work_Report.pdf` could not be extracted (the PDF
+is not present in the project folder). The slot is wired up: drop the
+file with the right name and it appears automatically.
 
 ---
 

@@ -174,13 +174,13 @@
             <p>Weather: NOAA Local Climatological Data for 2025 from one airport station per state, summarised into mean temperature, mean humidity and total precipitation.</p>
             <p>Counties: Six large counties from six states: Los Angeles (CA), Harris (TX), Queens (NY), Cook (IL), Miami-Dade (FL) and Denver (CO).</p>
 
-            <!-- Data flow figure -->
-            <figure class="figure-wrap wide" aria-label="Project 1 data flow placeholder">
+            <!-- Correlation heatmap (replaces the old data-flow diagram slot) -->
+            <figure class="figure-wrap wide" aria-label="Project 1 correlation heatmap">
               <img
-                src="assets/img/p1-data-flow.png"
-                alt="Project 1 data flow diagram — two sources (EPA, NOAA) merge by state into a 6-row by 6-feature table, then standardise and run K-Means."
-                onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>p1-data-flow.png</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
-              <figcaption class="case-figure-caption">Two sources (EPA, NOAA) → merge by state → 6 rows × 6 features → standardise → K-Means.</figcaption>
+                src="assets/img/p1-correlation-heatmap.png"
+                alt="Project 1 — 6×6 correlation heatmap between three air-quality features (Median AQI, 90th Percentile AQI, good-ratio) and three weather features (mean temperature, mean humidity, total rainfall). Air-quality measures correlate strongly together (≈0.96); weather barely correlates with air quality."
+                onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>p1-correlation-heatmap.png</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
+              <figcaption class="case-figure-caption">Air-quality features cluster together (red, ≈0.96); weather features barely correlate with air quality (near-zero).</figcaption>
             </figure>
 
             <h4>What I did</h4>
