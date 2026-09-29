@@ -968,11 +968,20 @@ section { padding: clamp(56px, 8vw, 96px) 0; }
   border-radius: var(--radius-lg);
   padding: 14px;
   box-shadow: var(--shadow-sm);
+  /* Hero is a portrait frame — fixed aspect ratio so the image is cropped consistently */
+  aspect-ratio: 4 / 5;
+  max-height: 560px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .hero-visual-frame img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;        /* bias upward so faces stay in frame */
   border-radius: var(--radius);
   border: 1px solid var(--c-line-soft);
   background: var(--c-bg-alt);
