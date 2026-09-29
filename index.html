@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chin Pang Chow — I turn data into clear, human stories.</title>
-  <meta name="description" content="Personal portfolio of Chin Pang Chow, final-year Computer Science student at Hong Kong Baptist University. Data analysis, visualisation and public speaking." />
+  <title>Chin Pang Chow — Learning to turn data into stories.</title>
+  <meta name="description" content="Personal portfolio of Chin Pang Chow, final-year Computer Science student at Hong Kong Baptist University. Data analysis, visualisation." />
   <meta name="theme-color" content="#f7f5f1" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Chin Pang Chow — Portfolio" />
-  <meta property="og:description" content="I turn data into clear, human stories. Data analysis, visualisation, public speaking." />
+  <meta property="og:description" content="Learning to turn data into stories. Data analysis, visualisation." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_HK" />
 
@@ -31,6 +31,7 @@
   <!-- Page scripts (ES modules) -->
   <script type="module" src="js/main.js" defer></script>
   <script type="module" src="js/charts.js" defer></script>
+  <script type="module" src="js/project3.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -76,22 +77,28 @@
           <div class="hero-text">
             <p class="eyebrow reveal">Portfolio · Hong Kong Baptist University</p>
             <h1 id="hero-name" class="reveal">Chin Pang Chow</h1>
-            <p class="positioning reveal">I turn data into clear, human stories.</p>
-            <p class="meta-line reveal">Computer Science student · Data analysis · Visualisation · Public speaking</p>
+            <p class="positioning reveal">Learning to turn data into stories.</p>
+            <p class="meta-line reveal">Computer Science student · Data analysis · Visualisation</p>
             <div class="cta-row reveal">
               <a class="btn btn-primary" href="#projects">View projects ↓</a>
               <a class="btn btn-ghost" href="assets/docs/CV_Chin_Pang_Chow.pdf" target="_blank" rel="noopener">Download CV</a>
             </div>
           </div>
 
-          <!-- HERO VISUAL PLACEHOLDER -->
-          <!-- Replace assets/img/hero-visual.png with your own image.
-               The placeholder shows the expected filename. -->
-          <figure class="figure-wrap tall hero-visual reveal" aria-label="Hero visual placeholder">
-            <img
-              src="assets/img/hero-visual.png"
-              alt="Hero visual — place a labelled cluster scatter plot here (x = mean temperature, y = Median AQI, coloured by cluster) on a dark background."
-              onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>hero-visual.png</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
+          <!-- HERO VISUAL
+               Single source of truth for the hero image lives here:
+               change the src and alt below to swap to e.g.
+               assets/img/p1-cluster-scatter.png. The image is the
+               student's own PCA scatter; the PCA scatter is the student's
+               own work from COMP3115. -->
+          <figure class="figure-wrap hero-visual reveal" aria-label="Hero visual — PCA scatter">
+            <div class="hero-visual-frame">
+              <img
+                src="assets/img/p2-pca-scatter.png"
+                width="1970" height="1368"
+                alt="Scatter plot of US counties on two principal components, coloured by cluster"
+                onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>p2-pca-scatter.png</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
+            </div>
           </figure>
         </div>
       </div>
@@ -107,8 +114,7 @@
 
         <div class="about-grid">
           <div class="about-text reveal">
-            <p>I'm a final-year Computer Science student at Hong Kong Baptist University, specialising in Data and Media Communication. I enjoy the moment when a messy table of numbers starts to say something, and the harder job of explaining it so that anyone can follow.</p>
-            <p>I also coach Chinese debate teams in Hong Kong schools and competed in the Hong Kong Intercollegiate Cantonese Debate League. Debating taught me to lead with a claim, back it with evidence and ask "so what?" at every step, which is the same approach I bring to data stories.</p>
+            <p>I'm a final-year Computer Science student at Hong Kong Baptist University, concentrating in Data and Media Communication. I enjoy looking for the reasons behind numbers and asking why. I'm interested in using data to understand social issues and turning information into meaningful stories.</p>
             <p class="eyebrow" style="margin-top:1.6em;">What I work with</p>
             <ul class="about-list">
               <li>Python (pandas, scikit-learn, matplotlib)</li>
@@ -116,7 +122,6 @@
               <li>Exploratory data analysis</li>
               <li>Data visualisation</li>
               <li>Database design</li>
-              <li>Public speaking and coaching</li>
             </ul>
           </div>
 
@@ -134,7 +139,6 @@
           <p>Where each skill actually showed up in my projects and work — not a self-rating, just where it's been used.</p>
           <div class="skills-matrix-wrap">
             <div class="skills-matrix-svg-wrap" id="skills-matrix" role="img" aria-label="Skills-in-context matrix: rows are skills, columns are places of use, a filled dot means the skill was used there."></div>
-            <p class="skills-matrix-caption">A filled dot means the skill was used in that context. Hover or focus a row to highlight it.</p>
           </div>
         </div>
       </div>
@@ -146,38 +150,40 @@
         <header class="section-head">
           <p class="eyebrow reveal">Projects</p>
           <h2 id="projects-h" class="reveal">Three projects, each told as a story.</h2>
-          <p class="reveal projects-intro">Three projects, each told as a story: the question, the data, what I found, and what I'd do differently.</p>
         </header>
 
         <!-- PROJECT 1 -->
         <article class="case-study" aria-labelledby="p1-title">
           <header class="case-head">
-            <p class="eyebrow">Project 1 · COMP3115</p>
+            <p class="eyebrow">Project 1</p>
             <h3 id="p1-title">Does Weather Explain Air Quality?</h3>
-            <p class="case-sub">Clustering US counties by air quality and climate · Group project, COMP3115 · Mar–Apr 2026 · My role: clustering analysis</p>
+            <p class="case-sub">Clustering US counties by air quality and climate</p>
           </header>
 
           <!-- Hero visual -->
-          <figure class="figure-wrap tall reveal" aria-label="Project 1 cluster scatter placeholder">
+          <figure class="figure-wrap reveal" aria-label="Project 1 cluster scatter">
             <img
               src="assets/img/p1-cluster-scatter.png"
+              width="1400" height="900"
               alt="Project 1 — cluster scatter plot of six US counties (x = mean temperature, y = Median AQI), coloured by cluster, with county names labelled."
               onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>p1-cluster-scatter.png</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
+            <figcaption class="case-figure-caption">Three clusters, three different stories: cool-and-moderate (Queens, Cook, Denver), hot-and-clean (Miami-Dade), warm-and-worst (Los Angeles, Harris).</figcaption>
           </figure>
 
           <div class="case-body reveal">
             <h4>The question</h4>
-            <p>Los Angeles is famous for smog. Miami is hotter and more humid. If weather drove air quality, hot places should have worse air. I wanted to test whether counties with similar weather also have similar air quality.</p>
+            <p>Los Angeles is infamous for its smog. Miami is hotter and more humid, so I wanted to <strong>test whether weather drives air quality</strong>.</p>
 
             <h4>The data</h4>
-            <p>Air quality: EPA annual AQI summaries for 2025. I used three measures: Median AQI, 90th Percentile AQI, and the share of days rated "Good" (good ratio).</p>
-            <p>Weather: NOAA Local Climatological Data for 2025 from one airport station per state, summarised into mean temperature, mean humidity and total precipitation.</p>
-            <p>Counties: Six large counties from six states: Los Angeles (CA), Harris (TX), Queens (NY), Cook (IL), Miami-Dade (FL) and Denver (CO).</p>
+            <p>Air quality: EPA annual AQI summaries for 2025. We measured <strong>Median AQI</strong>, 90th Percentile AQI, and the share of days rated "Good" (<strong>good ratio</strong>).</p>
+            <p>Weather: <strong>Mean temperature</strong>, humidity and <strong>total precipitation</strong>: NOAA Local Climatological Data for 2025, using one airport station per state.</p>
+            <p>Counties: <strong>Six large counties</strong> from <strong>six states</strong>: Los Angeles (CA), Harris (TX), Queens (NY), Cook (IL), Miami-Dade (FL) and Denver (CO).</p>
 
             <!-- Correlation heatmap (replaces the old data-flow diagram slot) -->
-            <figure class="figure-wrap wide" aria-label="Project 1 correlation heatmap">
+            <figure class="figure-wrap" aria-label="Project 1 correlation heatmap">
               <img
                 src="assets/img/p1-correlation-heatmap.png"
+                width="1400" height="1045"
                 alt="Project 1 — 6×6 correlation heatmap between three air-quality features (Median AQI, 90th Percentile AQI, good-ratio) and three weather features (mean temperature, mean humidity, total rainfall). Air-quality measures correlate strongly together (≈0.96); weather barely correlates with air quality."
                 onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>p1-correlation-heatmap.png</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
               <figcaption class="case-figure-caption">Air-quality features cluster together (red, ≈0.96); weather features barely correlate with air quality (near-zero).</figcaption>
@@ -185,15 +191,15 @@
 
             <h4>What I did</h4>
             <ul>
-              <li>Cleaned and combined the two sources, filling missing weather values with the average of that measure.</li>
-              <li>Checked correlations first, to see whether weather and air quality moved together before clustering anything.</li>
-              <li>Explored each variable with histograms, boxplots and a temperature-vs-AQI scatter plot.</li>
-              <li>Scaled every feature to 0–1. Total rainfall ranges in the hundreds to over a thousand, while the other variables are far smaller, so without scaling rainfall would have dominated the clustering.</li>
-              <li>Ran K-Means with k = 3.</li>
+              <li>Cleaned and <strong>combined</strong> the two sources, filling <strong>missing weather values</strong> with the average of that measure.</li>
+              <li>Checked <strong>correlations</strong> first, to see whether <strong>weather and air quality</strong> moved together before clustering anything.</li>
+              <li>Explored each variable with <strong>histograms</strong>, boxplots and a <strong>temperature-vs-AQI</strong> scatter plot.</li>
+              <li><strong>Scaled every feature</strong> to 0–1. Total rainfall ranges in the hundreds to over a thousand, while the other variables are far smaller, so without scaling rainfall would have <strong>dominated the clustering</strong>.</li>
+              <li>Ran <strong>K-Means</strong> with <strong>k = 3</strong>.</li>
             </ul>
 
-            <h4>What I found</h4>
-            <p>Air quality measures move together; weather barely moves with them. Median AQI and 90th Percentile AQI correlate at 0.96, and the good-day ratio moves in the opposite direction (−0.91 and −0.83). But mean temperature and Median AQI correlate at only 0.17.</p>
+            <h4>What we found</h4>
+            <p><strong>Air quality measures move together</strong>; <strong>weather barely moves with them</strong>. Median AQI and 90th Percentile AQI correlate at 0.96, and the good-day ratio moves in the opposite direction (−0.91 and −0.83). But mean temperature and Median AQI correlate at only 0.17.</p>
 
             <!-- CORRELATION HEATMAP -->
             <div class="chart-card" role="img" aria-label="Correlation heatmap of six air-quality and weather variables, blue for negative and red for positive correlations, centred at zero.">
@@ -210,62 +216,18 @@
 
             <p>Three clusters, three different stories:</p>
 
-            <!-- Cluster table (responsive wrapper) -->
-            <div class="cluster-table-wrap">
-              <table class="cluster-table">
-                <thead>
-                  <tr>
-                    <th>Cluster</th>
-                    <th>Counties</th>
-                    <th>Median AQI</th>
-                    <th>Good-day ratio</th>
-                    <th>Mean temp</th>
-                    <th>Character</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>0</td>
-                    <td>Queens, Cook, Denver</td>
-                    <td>50.3</td>
-                    <td>0.50</td>
-                    <td>12.2</td>
-                    <td>Cooler, moderate air</td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>Miami-Dade</td>
-                    <td>49.0</td>
-                    <td>0.51</td>
-                    <td>25.7</td>
-                    <td>Hottest, wettest, relatively clean</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Los Angeles, Harris</td>
-                    <td>70.0</td>
-                    <td>0.10</td>
-                    <td>20.2</td>
-                    <td>Warm, worst air</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <!-- CLUSTER PROFILES (small multiples bar chart) -->
-            <div class="chart-card" role="img" aria-label="Cluster profile bars comparing Median AQI, good-day ratio and mean temperature across three clusters, each metric on its own scale.">
+            <!-- CLUSTER PROFILES (small-multiples grouped bars) -->
+            <div class="chart-card" role="img" aria-label="Cluster profiles: three clusters compared on three metrics — Median AQI, good-day ratio, and mean temperature — with each cluster shown in its own colour across all metrics.">
               <p class="chart-summary">Cluster profiles — each metric on its own scale so bars stay comparable across clusters.</p>
               <div id="cluster-profiles"></div>
+              <ul class="cluster-legend" aria-label="Cluster colour key">
+                <li><span class="cl-dot" style="background: var(--c-cat-0);"></span>Cluster 0 · Queens, Cook, Denver</li>
+                <li><span class="cl-dot" style="background: var(--c-cat-1b);"></span>Cluster 1 · Miami-Dade</li>
+                <li><span class="cl-dot" style="background: var(--c-cat-2b);"></span>Cluster 2 · Los Angeles, Harris</li>
+              </ul>
             </div>
 
-            <p><strong>The key insight:</strong> Miami-Dade and the Los Angeles/Harris group are all warm and humid, yet Miami-Dade has far cleaner air. The clustering separates them because of how many "Good" days they have, not because of temperature. Weather explains only part of the story. Traffic, industry, local geography and wildfire smoke probably explain the rest.</p>
-
-            <h4>What I'd do differently</h4>
-            <ul>
-              <li>Six counties is a tiny sample, so the correlations are suggestive, not conclusive. Choosing k = 3 was also a practical choice (two counties per cluster on average), not a statistically tested one.</li>
-              <li>One airport station per state is a rough proxy for a county's climate.</li>
-              <li>Next time I'd use many more counties and add traffic and industry data to test the "human factors" idea directly.</li>
-            </ul>
+            <p><strong>Key insight:</strong> Miami-Dade and Los Angeles/Harris are similarly <strong>warm</strong> and <strong>humid</strong>, but Miami-Dade has <strong>cleaner air</strong>. Clustering is driven by <strong>"Good" days</strong>, not temperature. Weather is only part of the story; traffic, industry, geography and wildfire smoke may also matter.</p>
 
             <h4>Tools</h4>
             <p>Python, pandas, scikit-learn (MinMaxScaler, KMeans), matplotlib</p>
@@ -282,35 +244,37 @@
             <p class="case-sub">Reducing 14 air-quality indicators with PCA · Group project, COMP3115 · Mar–Apr 2026 · My role: PCA and clustering in PCA space</p>
           </header>
 
-          <figure class="figure-wrap tall reveal" aria-label="Project 2 PCA scatter placeholder">
+          <figure class="figure-wrap reveal" aria-label="Project 2 PCA scatter">
             <img
               src="assets/img/p2-pca-scatter.png"
+              width="1970" height="1368"
               alt="Project 2 — PCA scatter plot of counties on PC1 (x) and PC2 (y), coloured by cluster, with an outlier labelled."
               onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>p2-pca-scatter.png</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
+            <figcaption class="case-figure-caption">Four clusters in PCA space; one outlier (a wildfire year) stretches the plot along PC2.</figcaption>
           </figure>
 
           <div class="case-body reveal">
             <h4>The question</h4>
-            <p>County air-quality data has many columns that say similar things: days rated Good or Unhealthy, median and maximum AQI, and the number of days each pollutant was the main driver. Can those 14 columns be boiled down to a few dimensions that describe how US counties differ?</p>
+            <p>County air-quality data contains many similar measures, so I wanted to identify the <strong>key differences</strong> between counties and visualize them clearly.</p>
 
             <h4>The data</h4>
-            <p>EPA annual air-quality summaries for counties across the six states, with 14 indicators per county, including AQI category days, AQI maximum, 90th percentile and median, and days dominated by CO, NO₂, ozone, PM2.5 and PM10.</p>
+            <p>EPA annual air-quality summaries for counties across the six states, with <strong>14 indicators</strong> per county, including AQI category days, AQI maximum, 90th percentile and median, and days dominated by CO, NO₂, ozone, PM2.5 and PM10.</p>
 
             <h4>What I did</h4>
             <ul>
-              <li>Standardised all 14 indicators (z-scores), so days and AQI points could be compared fairly.</li>
-              <li>Ran a full PCA to see how much information each component keeps.</li>
-              <li>Projected counties onto the first two components and plotted them.</li>
-              <li>Used the elbow method to choose four clusters, then ran K-Means in this reduced space.</li>
-              <li>Built a biplot to see which original indicators push each component.</li>
+              <li><strong>Standardised</strong> all 14 indicators (z-scores), so days and AQI points could be <strong>compared fairly</strong>.</li>
+              <li>Ran a full <strong>PCA</strong> to see how much <strong>information</strong> each component keeps.</li>
+              <li>Projected counties onto the <strong>first two components</strong> and plotted them.</li>
+              <li>Used the elbow method to choose <strong>four clusters</strong>, then ran <strong>K-Means</strong> in this reduced space.</li>
+              <li>Built a <strong>biplot</strong> to see which <strong>original indicators</strong> push each component.</li>
             </ul>
 
             <h4>What I found</h4>
-            <p>One dimension carries about a third of the information. The first component alone explains roughly 36% of the variance, and the first two together about half. About five components are needed to reach 80%.</p>
 
-            <figure class="figure-wrap tall" aria-label="Project 2 scree plot placeholder">
+            <figure class="figure-wrap" aria-label="Project 2 scree plot">
               <img
                 src="assets/img/p2-scree.png"
+                width="1968" height="1168"
                 alt="Project 2 — scree plot with bars for each principal component's variance explained, an overlaid line for cumulative variance, and a dashed 80% reference line."
                 onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>p2-scree.png</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
               <figcaption class="case-figure-caption">Two components tell about half the story, five tell 80%.</figcaption>
@@ -318,32 +282,29 @@
 
             <p>The two dimensions have clear meanings:</p>
             <ul>
-              <li><strong>PC1 – general air quality:</strong> driven by the number of PM2.5 days, median AQI and unhealthy-air indicators. Counties on one side have generally cleaner air, counties on the other side have generally worse air.</li>
-              <li><strong>PC2 – extreme events:</strong> driven by maximum AQI and upper-percentile values. A county can have a decent typical year and still suffer a few severe pollution days.</li>
+              <li><strong>PC1 – general air quality:</strong> driven by the number of PM2.5 days, median AQI and unhealthy-air indicators. Counties on one side have generally <strong>cleaner air</strong>, counties on the other side have generally worse air.</li>
+              <li><strong>PC2 – extreme events:</strong> driven by maximum AQI and upper-percentile values. A county can have a decent typical year and still suffer a few <strong>severe pollution days</strong>.</li>
             </ul>
 
-            <figure class="figure-wrap tall" aria-label="Project 2 biplot placeholder">
+            <figure class="figure-wrap" aria-label="Project 2 biplot">
               <img
                 src="assets/img/p2-biplot.png"
+                width="1986" height="1565"
                 alt="Project 2 — biplot of original variables as arrows projected onto PC1 and PC2; PC1 = everyday air quality, PC2 = extreme pollution events."
                 onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>p2-biplot.png</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
               <figcaption class="case-figure-caption">PC1 = everyday air quality, PC2 = extreme pollution events.</figcaption>
             </figure>
 
-            <figure class="figure-wrap wide" aria-label="Project 2 elbow plot placeholder">
+            <figure class="figure-wrap" aria-label="Project 2 elbow plot">
               <img
                 src="assets/img/p2-elbow.png"
+                width="1568" height="968"
                 alt="Project 2 — elbow plot of within-cluster sum of squares against number of clusters, with an elbow at k = 4."
                 onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>p2-elbow.png</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
+              <figcaption class="case-figure-caption">Within-cluster sum of squares against k; the elbow at k = 4 is the chosen cluster number.</figcaption>
             </figure>
 
-            <p><strong>The key insight:</strong> Counties differ in two separate ways. Some are bad every day, others are mostly fine but hit by severe episodes. Looking only at average AQI would hide the second group.</p>
-
-            <h4>What I'd do differently</h4>
-            <ul>
-              <li>Two components keep only about half the variance, so the 2D picture leaves out a lot. I'd check a third component too.</li>
-              <li>One extreme outlier county stretches the plot and is worth investigating separately (for example, a wildfire year) rather than leaving it in the picture unexplained.</li>
-            </ul>
+            <p><strong>The key insight:</strong> Counties differ in <strong>two separate ways</strong>. Some are bad every day, others are mostly fine but hit by <strong>severe episodes</strong>. Looking only at average AQI would hide the second group.</p>
 
             <h4>Tools</h4>
             <p>Python, pandas, scikit-learn (StandardScaler, PCA, KMeans), matplotlib, seaborn</p>
@@ -352,48 +313,176 @@
           <a class="back-to-top" href="#projects">↑ Back to top of projects</a>
         </article>
 
-        <!-- PROJECT 3 -->
+        <!-- PROJECT 3: COMP2016 DATABASE -->
         <article class="case-study" aria-labelledby="p3-title">
           <header class="case-head">
-            <p class="eyebrow">Project 3 · Internship</p>
-            <h3 id="p3-title">From Spreadsheet to Shop-Floor Report</h3>
-            <p class="case-sub">Logistics and inventory reporting · IT internship, Suzhou Greenhulk Bio-Tech · Jul–Aug 2026 (270 hours)</p>
+            <p class="eyebrow">Project 3 · COMP2016</p>
+            <h3 id="p3-title">A Flight Booking Database</h3>
+            <p class="case-sub">Oracle SQL and Python · Group project, COMP2016 · <span class="ph">[placeholder: months/year]</span> · My role: <span class="ph">[placeholder: confirm role, e.g. database design, security and documentation]</span></p>
           </header>
 
-          <figure class="figure-wrap tall reveal" aria-label="Project 3 mock dashboard placeholder">
-            <img
-              src="assets/img/p3-mock-dashboard.png"
-              alt="Project 3 dashboard — pending; the internship figures are confidential and not shown here."
-              onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>p3-mock-dashboard.png</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
-            <figcaption class="case-figure-caption">Dashboard pending — real internship figures are confidential; supply a redacted version or remove this slot.</figcaption>
-          </figure>
-
           <div class="case-body reveal">
-            <h4>The context</h4>
-            <p>The company runs a factory that makes, packages and ships cleaning products and pharmaceuticals. Managers need to know, at a glance, how much raw material is on hand, how much product has been packed, and how many orders are waiting.</p>
+            <h4>The question</h4>
+            <p>How to simulate a database system of flight booking?</p>
 
-            <h4>My role</h4>
-            <p>As an IT intern working under senior colleagues, I recorded the logistics and inventory figures (raw materials, packaged products, order counts), and used them to produce basic visual reports so the team could monitor factory output more easily. I also learned the factory's internal software systems from the senior IT staff.</p>
+            <h4>The data</h4>
+            <p><strong>Four related tables</strong>: Customers, Flights, Bookings and Booking_Details. Booking_Details lets one booking hold <strong>up to three flights</strong>, in order. The system was set up with three sample customers and three sample flights: Hong Kong to Tokyo (CX100), Tokyo to New York (CX101) and Hong Kong to Beijing (CX102).</p>
 
-            <h4>How the reports were built</h4>
-            <ul>
-              <li><strong>Record:</strong> Log raw material quantities, packaged product volumes and order numbers.</li>
-              <li><strong>Tidy:</strong> Keep the records consistent so they can be compared day to day.</li>
-              <li><strong>Show:</strong> Turn the tables into simple charts that answer one question each.</li>
-            </ul>
+            <h4>What I did</h4>
+            <ol>
+              <li>Designed the schema and <strong>ER diagram</strong>: primary and foreign keys, a UNIQUE passport number so one passport cannot create two accounts, and a <strong>composite key</strong> on Booking_Details so the same flight cannot be added to a booking twice.</li>
+              <li>Put <strong>business rules</strong> inside the database, not just the app: <strong>CHECK constraints</strong> reject negative fares, negative seat counts, and arrival times earlier than departure.</li>
+              <li>Added a <strong>trigger</strong> that subtracts one seat every time a flight is added to a booking, so <strong>seat counts</strong> stay correct even if a booking is inserted outside the Python app.</li>
+              <li>Built a <strong>Python command-line app</strong> to manage flights, search, book and cancel. Search finds direct flights and <strong>one-stop connections</strong> where the second flight leaves after the first arrives and the total travel time stays within the customer's limit; connections get a 10% discount.</li>
+              <li>Used <strong>parameterised queries</strong> so user input is never run as SQL, and wrapped each booking in a <strong>transaction</strong> that rolls back if any flight fails.</li>
+              <li>Cancelling a booking deletes it, and through <strong>ON DELETE CASCADE</strong> its flight details too.</li>
+            </ol>
 
-            <figure class="figure-wrap wide" aria-label="Project 3 process diagram placeholder">
-              <img
-                src="assets/img/p3-process.png"
-                alt="Project 3 — three-step process diagram: Record → Tidy → Show, with an icon for each step."
-                onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>p3-process.png</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
+            <!-- ER diagram (split layout) -->
+            <div class="er-split">
+              <div class="er-image">
+                <figure class="figure-wrap figure-er" aria-label="Entity-relationship diagram for the COMP2016 flight booking database">
+                  <img
+                    src="assets/img/p4-er-diagram.png"
+                    width="1870" height="2660"
+                    alt="Entity-relationship diagram: CUSTOMERS, BOOKINGS, BOOKING_DETAILS, FLIGHTS, with primary keys (cust_id, bid, fno, bid+fno), foreign keys from BOOKINGS to CUSTOMERS and from BOOKING_DETAILS to BOOKINGS/FLIGHTS, the relationships makes, has and links, and a legend for PK, FK and U."
+                    onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>p4-er-diagram.png</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
+                </figure>
+              </div>
+              <div class="er-read">
+                <p class="eyebrow" style="margin-top:0;">How to read it</p>
+                <ol>
+                  <li>Customers <em>make</em> Bookings (one customer → many bookings).</li>
+                  <li>A Booking <em>has</em> one or more Booking_Details rows (up to three flights).</li>
+                  <li>Booking_Details <em>links</em> each flight to the booking, in order.</li>
+                  <li>PK = primary key, FK = foreign key, U = unique constraint.</li>
+                </ol>
+              </div>
+            </div>
+            <p class="case-figure-caption">Entity-relationship diagram: customers make bookings, bookings contain booking details, and booking details link to flights.</p>
+
+            <h4>What I found</h4>
+            <p>A worked example with the sample data: there is <strong>no direct flight</strong> from Hong Kong to New York, so the search combines CX100 (12:00–16:00) with CX101 (18:30–23:30). The fare is (2000 + 4000) × 0.9 = 5400 and the trip takes 11.5 hours. Booking both flights takes one seat from each. CX102 has only one seat, so a second booking on it would be rejected by the seat check and the <strong>whole booking rolled back</strong>.</p>
+            <p><strong>Key insight:</strong> putting the <strong>rules in the database</strong>, not only in the Python app, keeps the <strong>data correct</strong> no matter which program writes to it.</p>
+
+            <!-- Booking flow diagram (inline SVG) -->
+            <figure class="flow-diagram" aria-label="Booking flow diagram">
+              <p class="eyebrow" style="margin:0 0 8px;">Booking flow</p>
+              <svg viewBox="0 0 920 360" role="img" aria-labelledby="flow-title flow-desc">
+                <title id="flow-title">Booking flow: from chosen flights to either a successful commit or a full rollback.</title>
+                <desc id="flow-desc">Customer chooses one to three flights; the app inserts a Bookings row, then one Booking_Details row per flight; a trigger subtracts one seat from each flight. If any flight would go below zero seats, the whole transaction rolls back; otherwise it commits.</desc>
+
+                <defs>
+                  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+                    <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+                  </marker>
+                </defs>
+
+                <!-- ============ TOP ROW: 4 step boxes ============ -->
+                <g font-family="Inter, system-ui, sans-serif" font-size="14" fill="currentColor">
+                  <g>
+                    <rect x="20"  y="30" width="170" height="60" rx="10" fill="var(--c-bg-soft)" stroke="var(--c-line)" stroke-width="1.2"/>
+                    <text x="105" y="58" text-anchor="middle">Customer chooses</text>
+                    <text x="105" y="78" text-anchor="middle">1 to 3 flights</text>
+                  </g>
+                  <g>
+                    <rect x="250" y="30" width="180" height="60" rx="10" fill="var(--c-bg-soft)" stroke="var(--c-line)" stroke-width="1.2"/>
+                    <text x="340" y="58" text-anchor="middle">Insert a row</text>
+                    <text x="340" y="78" text-anchor="middle">in Bookings</text>
+                  </g>
+                  <g>
+                    <rect x="490" y="30" width="240" height="60" rx="10" fill="var(--c-bg-soft)" stroke="var(--c-line)" stroke-width="1.2"/>
+                    <text x="610" y="58" text-anchor="middle">Insert one Booking_Details</text>
+                    <text x="610" y="78" text-anchor="middle">row per flight</text>
+                  </g>
+                  <g>
+                    <rect x="790" y="30" width="110" height="60" rx="10" fill="var(--c-bg-soft)" stroke="var(--c-line)" stroke-width="1.2"/>
+                    <text x="845" y="58" text-anchor="middle">Trigger</text>
+                    <text x="845" y="78" text-anchor="middle">−1 seat each</text>
+                  </g>
+                </g>
+
+                <!-- Arrow from last step down to the diamond -->
+                <g fill="none" stroke="currentColor" stroke-width="1.4">
+                  <path d="M190,60  L250,60"  marker-end="url(#arr)"/>
+                  <path d="M430,60  L490,60"  marker-end="url(#arr)"/>
+                  <path d="M730,60  L790,60"  marker-end="url(#arr)"/>
+                  <path d="M845,90  L845,140" marker-end="url(#arr)"/>
+                </g>
+
+                <!-- ============ MIDDLE: Decision diamond (centred, roomy) ============ -->
+                <g font-family="Inter, system-ui, sans-serif" font-size="13" fill="currentColor">
+                  <polygon
+                    points="845,150 945,210 845,270 745,210"
+                    fill="var(--c-bg-alt)" stroke="var(--c-line)" stroke-width="1.5"/>
+                  <text x="845" y="200" text-anchor="middle" font-weight="600">Any flight</text>
+                  <text x="845" y="218" text-anchor="middle" font-weight="600">would go</text>
+                  <text x="845" y="236" text-anchor="middle" font-weight="600">below 0 seats?</text>
+                </g>
+
+                <!-- ============ BOTTOM: COMMIT (left) and ROLLBACK (right) ============ -->
+                <g font-family="Inter, system-ui, sans-serif" font-size="14" fill="currentColor">
+                  <g>
+                    <rect x="60" y="220" width="200" height="64" rx="10"
+                          fill="color-mix(in srgb, var(--c-cat-3) 14%, var(--c-bg-alt))"
+                          stroke="var(--c-cat-3)" stroke-width="1.5"/>
+                    <text x="160" y="248" text-anchor="middle" font-weight="600" fill="var(--c-cat-3)">✓ COMMIT</text>
+                    <text x="160" y="268" text-anchor="middle" fill="var(--c-ink-soft)" font-size="13">booking confirmed</text>
+                  </g>
+                  <g>
+                    <rect x="600" y="220" width="200" height="64" rx="10"
+                          fill="color-mix(in srgb, var(--c-cat-2) 14%, var(--c-bg-alt))"
+                          stroke="var(--c-cat-2)" stroke-width="1.5"/>
+                    <text x="700" y="248" text-anchor="middle" font-weight="600" fill="var(--c-cat-2)">⚠ ROLLBACK</text>
+                    <text x="700" y="268" text-anchor="middle" fill="var(--c-ink-soft)" font-size="13">nothing is saved</text>
+                  </g>
+                </g>
+
+                <!-- ============ Branches ============ -->
+                <g fill="none" stroke="currentColor" stroke-width="1.4">
+                  <!-- No branch: diamond bottom -> COMMIT (curve down & left) -->
+                  <path d="M845,270 Q500,330 260,260" marker-end="url(#arr)"/>
+                  <text x="520" y="324" text-anchor="middle" font-size="13">No</text>
+
+                  <!-- Yes branch: diamond left -> ROLLBACK (curve down & right) -->
+                  <path d="M745,210 Q700,250 800,252" marker-end="url(#arr)"/>
+                  <text x="700" y="200" text-anchor="middle" font-size="13">Yes</text>
+                </g>
+              </svg>
             </figure>
 
-            <h4>What I learned</h4>
-            <p>Good reporting starts with the reader's question, not the chart. IT support means understanding how people actually use the numbers every day, and working across departments matters as much as technical skill.</p>
+            <!-- SQL viewer -->
+            <p class="eyebrow" style="margin-top:1.6em;">Annotated SQL</p>
+            <div class="sql-viewer" id="sql-viewer"
+                 role="region" aria-label="Annotated SQL viewer"
+                 data-tab-schema="data/sql/schema.sql"
+                 data-tab-trigger="data/sql/trigger.sql"
+                 data-tab-search="data/sql/search.sql">
+              <div class="sql-tabs" role="tablist" aria-label="SQL tabs">
+                <button role="tab" id="sql-tab-schema"   aria-selected="true"  aria-controls="sql-panel-schema"   data-tab="schema">Schema</button>
+                <button role="tab" id="sql-tab-trigger"  aria-selected="false" aria-controls="sql-panel-trigger"  data-tab="trigger" tabindex="-1">Trigger</button>
+                <button role="tab" id="sql-tab-search"   aria-selected="false" aria-controls="sql-panel-search"   data-tab="search" tabindex="-1">Connection search</button>
+              </div>
+              <div class="sql-code-wrap" id="sql-panel-schema" role="tabpanel" aria-labelledby="sql-tab-schema" data-tab-panel="schema">
+                <div class="line-num" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <pre><code class="language-sql"></code></pre>
+                <button class="sql-copy" type="button" aria-label="Copy SQL to clipboard">Copy</button>
+              </div>
+              <div class="sql-code-wrap" id="sql-panel-trigger" role="tabpanel" aria-labelledby="sql-tab-trigger" data-tab-panel="trigger" hidden>
+                <div class="line-num" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <pre><code class="language-sql"></code></pre>
+                <button class="sql-copy" type="button" aria-label="Copy SQL to clipboard">Copy</button>
+              </div>
+              <div class="sql-code-wrap" id="sql-panel-search" role="tabpanel" aria-labelledby="sql-tab-search" data-tab-panel="search" hidden>
+                <div class="line-num" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <pre><code class="language-sql"></code></pre>
+                <button class="sql-copy" type="button" aria-label="Copy SQL to clipboard">Copy</button>
+              </div>
+              <div class="sql-annotation" id="sql-annotation" aria-live="polite"></div>
+            </div>
 
             <h4>Tools</h4>
-            <p>Spreadsheet and data-recording tools, factory management software, basic charting</p>
+            <p>Oracle SQL and PL/SQL, Python (python-oracledb)</p>
           </div>
 
           <a class="back-to-top" href="#projects">↑ Back to top of projects</a>
@@ -406,14 +495,8 @@
       <div class="container">
         <header class="section-head">
           <p class="eyebrow reveal">Experience</p>
-          <h2 id="exp-h" class="reveal">A four-year arc.</h2>
-          <p class="reveal">Each lane is a thread — study, work, and coaching in parallel. Hover or focus a bar for details.</p>
+          <h2 id="exp-h" class="reveal">What I did in University</h2>
         </header>
-
-        <div class="timeline-toggle" role="group" aria-label="Timeline view toggle">
-          <button id="timeline-view-chart" aria-pressed="true">Chart</button>
-          <button id="timeline-view-table" aria-pressed="false">View as table</button>
-        </div>
 
         <div class="timeline-wrap reveal">
           <div class="timeline-svg-wrap" id="timeline" role="img" aria-label="Horizontal timeline 2023 to 2027 with three lanes — Education, Work, Teaching & Debate — showing each role as a coloured bar."></div>
@@ -426,9 +509,7 @@
           </div>
         </div>
 
-        <div class="timeline-vertical reveal" id="timeline-vertical"></div>
-
-        <div class="timeline-table-wrap reveal" id="timeline-table-wrap">
+        <div class="timeline-table-wrap reveal">
           <table class="timeline-table">
             <thead>
               <tr><th>Period</th><th>Role</th><th>Organisation</th><th>Lane</th></tr>
@@ -444,13 +525,12 @@
       <div class="container">
         <header class="section-head">
           <p class="eyebrow reveal">Teaching &amp; Communication</p>
-          <h2 id="teaching-h" class="reveal">Explaining things clearly, out loud.</h2>
+          <h2 id="teaching-h" class="reveal">Keeping asking Why for everything.</h2>
         </header>
 
         <div class="reveal" style="max-width:70ch;">
           <p>Alongside my degree, I coach Chinese debate teams in three schools and help primary students prepare for secondary-school interviews. My job is to help students build an argument, listen to the other side and respond under pressure.</p>
           <p>As a member of the HKBU Chinese Debate Team (2023–26), I competed in the Hong Kong Intercollegiate Cantonese Debate League (2024–25) and won my debates. The team also won the Inter-collegiate Debate Competition (2023–24) and the Kowloon Cup (2025–26).</p>
-          <p><strong>How this connects to my data work:</strong> A debate speech and a data story follow the same shape: a clear claim, evidence that supports it, and an answer to "so what?"</p>
         </div>
 
         <div class="school-grid reveal">
@@ -496,7 +576,6 @@
 
         <div class="reveal">
           <p>Email: <a href="mailto:chowtommy1122@gmail.com">chowtommy1122@gmail.com</a></p>
-          <p>GitHub: <a href="https://github.com/[placeholder]" target="_blank" rel="noopener">[link]</a> · LinkedIn: <a href="https://www.linkedin.com/in/[placeholder]" target="_blank" rel="noopener">[link]</a></p>
 
           <div class="contact-row">
             <a class="btn btn-primary" href="mailto:chowtommy1122@gmail.com">Email me</a>
@@ -511,7 +590,6 @@
   <footer class="site-footer">
     <div class="container">
       <span>© 2026 Chin Pang Chow</span>
-      <span>Built with the help of generative AI; prompts and conversation logs are provided with the assignment submission.</span>
       <a href="#home">Back to top ↑</a>
     </div>
   </footer>

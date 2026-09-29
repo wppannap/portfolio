@@ -1,4 +1,5 @@
 {
+  "_comment": "Do NOT add a COMP2016 entry here unless the student provides confirmed dates. The COMP2016 work is currently shown as Project 3 in the case studies, not in the timeline. Dates placeholder: [placeholder: COMP2016 months/year].",
   "lanes": [
     { "id": "education", "label": "Education" },
     { "id": "work", "label": "Work" },

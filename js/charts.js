@@ -47,256 +47,183 @@ function entryDates(entry) {
   return { start, end };
 }
 
-/* ---------- TIMELINE (Gantt) ----------------------------------- */
+/* ---------- TIMELINE (dot-list, decorative — no proportional bars) --- */
 
+/* Renders a horizontal axis of years (2023–2027) with a row of dots,
+   one per activity. Decorative only — positions are evenly spaced,
+   not data-proportional. Below the axis each entry has a card listing
+   role, organisation and dates. Milestones get a star on the axis. */
 async function renderTimeline() {
   const container = document.getElementById("timeline");
   if (!container) return;
 
   const data = await fetch("data/timeline.json").then(r => r.json());
-  const lanes = data.lanes;
-  const entries = data.entries;
+  const entries    = data.entries || [];
   const milestones = data.milestones || [];
-  const startYear = data.startYear;
-  const endYear = data.endYear;
+  const startYear  = data.startYear;
+  const endYear    = data.endYear;
+  const years      = d3.range(startYear, endYear + 1);
 
-  // Wipe container and build a fixed structure
+  // ---- container scaffolding ----
   container.innerHTML = "";
 
-  const wrap = d3.select(container);
+  /* Axis: a single horizontal line with year ticks and one dot per entry.
+     Pure HTML/CSS so it renders even if D3 is delayed; D3 only attaches
+     tooltips on hover. */
+  const axis = document.createElement("div");
+  axis.className = "dot-axis";
+  axis.style.setProperty("--years", years.length);
+  axis.setAttribute("role", "img");
+  axis.setAttribute("aria-label",
+    `Timeline from ${startYear} to ${endYear}. ${entries.length} activities and ${milestones.length} milestones.`);
 
-  // Sizing: fill the wrapper width but keep a min so it can scroll horizontally
-  const W = Math.max(container.clientWidth, 720);
-  const margin = { top: 28, right: 28, bottom: 60, left: 160 };
-  const laneH  = 56;
-  const innerW = W - margin.left - margin.right;
-  const innerH = lanes.length * laneH;
-  const H = innerH + margin.top + margin.bottom;
+  const ticks = document.createElement("div");
+  ticks.className = "dot-axis-ticks";
+  years.forEach(y => {
+    const tick = document.createElement("span");
+    tick.className = "dot-axis-tick";
+    tick.innerHTML = `<i></i><b>${y}</b>`;
+    ticks.appendChild(tick);
+  });
+  axis.appendChild(ticks);
 
-  const svg = wrap.append("svg")
-    .attr("viewBox", `0 0 ${W} ${H}`)
-    .attr("width", "100%")
-    .attr("height", H)
-    .attr("role", "img")
-    .attr("aria-label", `Horizontal timeline from ${startYear} to ${endYear} with ${lanes.length} lanes: ${lanes.map(l => l.label).join(", ")}.`);
+  const rail = document.createElement("div");
+  rail.className = "dot-axis-rail";
+  axis.appendChild(rail);
 
-  const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+  const dots = document.createElement("div");
+  dots.className = "dot-axis-dots";
+  entries.forEach(e => {
+    const { start, end } = entryDates(e);
+    const startYear_e = start.getFullYear();
+    const endYear_e   = end.getFullYear();
 
-  const xStart = new Date(startYear, 0, 1);
-  const xEnd   = new Date(endYear, 11, 31);
-  const x = d3.scaleTime().domain([xStart, xEnd]).range([0, innerW]);
+    // evenly-spaced placement per entry, not proportional
+    const idx = Math.max(0, Math.min(years.length - 1,
+      startYear_e - startYear));
+    const left = (idx + 0.5) / years.length * 100;
 
-  const laneY = (laneId) => {
-    const i = lanes.findIndex(l => l.id === laneId);
-    return i * laneH + 10;
-  };
+    const dot = document.createElement("span");
+    dot.className = `dot-axis-dot dot-lane-${e.lane}` + (e.ongoing ? " ongoing" : "");
+    dot.style.left = left + "%";
+    dot.tabIndex = 0;
+    dot.setAttribute("role", "img");
+    dot.setAttribute("aria-label",
+      `${e.role} at ${e.organisation || ""}: ${fmtMonthYear(start)} to ${fmtMonthYear(end)}`);
+    dot.dataset.role = e.role;
+    dot.dataset.org  = e.organisation || "";
+    dot.dataset.start = fmtMonthYear(start);
+    dot.dataset.end   = fmtMonthYear(end) + (e.ongoing ? " (ongoing)" : "");
+    if (e.note) dot.dataset.note = e.note;
+    dots.appendChild(dot);
+  });
+  milestones.forEach((m, i) => {
+    const dDate = parseTimelineDate(m.date);
+    if (!dDate) return;
+    const idx = Math.max(0, Math.min(years.length - 1,
+      dDate.getFullYear() - startYear));
+    const left = (idx + 0.5) / years.length * 100;
 
+    const star = document.createElement("span");
+    star.className = "dot-axis-star";
+    star.style.left = left + "%";
+    star.tabIndex = 0;
+    star.setAttribute("role", "img");
+    star.setAttribute("aria-label", `Milestone: ${m.label}`);
+    star.textContent = "★";
+    star.dataset.role = "★ " + m.label;
+    star.dataset.start = fmtMonthYear(dDate);
+    dots.appendChild(star);
+  });
+  axis.appendChild(dots);
+  container.appendChild(axis);
+
+  /* ---- activity list (decorative cards, one per row) ---- */
+  const list = document.createElement("ul");
+  list.className = "dot-list";
+  // Sort by start date so it reads chronologically
   const laneColor = {
-    education: cssVar("--c-cat-1"),
-    work:      cssVar("--c-cat-2"),
-    teaching:  cssVar("--c-cat-3"),
+    education: "var(--c-cat-1)",
+    work:      "var(--c-cat-2)",
+    teaching:  "var(--c-cat-3)",
   };
+  const ordered = entries.slice().sort((a, b) => entryDates(a).start - entryDates(b).start);
+  ordered.forEach(e => {
+    const { start, end } = entryDates(e);
+    const li = document.createElement("li");
+    li.className = `dot-list-item dot-lane-${e.lane}`;
+    li.innerHTML = `
+      <span class="dot-list-bullet" style="background:${laneColor[e.lane] || "var(--c-accent)"}"></span>
+      <div class="dot-list-body">
+        <div class="dot-list-role">${escapeHtml(e.role)}</div>
+        <div class="dot-list-org">${escapeHtml(e.organisation || "")}</div>
+        <div class="dot-list-dates">${fmtMonthYear(start)} – ${fmtMonthYear(end)}${e.ongoing ? " · ongoing" : ""}${e.note ? " · " + escapeHtml(e.note) : ""}</div>
+      </div>
+    `;
+    list.appendChild(li);
+  });
+  container.appendChild(list);
 
-  /* --- lane background rows --- */
-  g.selectAll(".lane-row")
-    .data(lanes).enter().append("rect")
-    .attr("class", "lane-row")
-    .attr("x", 0)
-    .attr("y", (_, i) => i * laneH)
-    .attr("width", innerW)
-    .attr("height", laneH - 6)
-    .attr("rx", 8)
-    .attr("fill", cssVar("--c-bg-soft"))
-    .attr("opacity", 0.6);
-
-  /* --- lane labels (left column) --- */
-  g.selectAll(".lane-label")
-    .data(lanes).enter().append("text")
-    .attr("class", "lane-label")
-    .attr("x", -12)
-    .attr("y", (_, i) => i * laneH + (laneH - 6) / 2 + 5)
-    .attr("text-anchor", "end")
-    .attr("font-family", "var(--f-sans)")
-    .attr("font-size", 13)
-    .attr("font-weight", 600)
-    .attr("fill", cssVar("--c-ink"))
-    .text(d => d.label);
-
-  /* --- today line --- */
-  const today = new Date();
-  if (today >= xStart && today <= xEnd) {
-    g.append("line")
-      .attr("class", "today-line")
-      .attr("x1", x(today)).attr("x2", x(today))
-      .attr("y1", 0).attr("y2", innerH)
-      .attr("stroke", cssVar("--c-ink-mute"))
-      .attr("stroke-width", 1)
-      .attr("stroke-dasharray", "3 3");
-    g.append("text")
-      .attr("x", x(today) + 4)
-      .attr("y", 12)
-      .attr("font-family", "var(--f-sans)")
-      .attr("font-size", 11)
-      .attr("fill", cssVar("--c-ink-mute"))
-      .text("today");
+  /* ---- milestone strip ---- */
+  if (milestones.length) {
+    const ms = document.createElement("ul");
+    ms.className = "dot-list dot-list-milestones";
+    milestones.forEach(m => {
+      const li = document.createElement("li");
+      li.className = "dot-list-item dot-list-milestone";
+      const d = parseTimelineDate(m.date);
+      li.innerHTML = `
+        <span class="dot-list-bullet">★</span>
+        <div class="dot-list-body">
+          <div class="dot-list-role">${escapeHtml(m.label)}</div>
+          <div class="dot-list-dates">${d ? fmtMonthYear(d) : ""}</div>
+        </div>
+      `;
+      ms.appendChild(li);
+    });
+    container.appendChild(ms);
   }
 
-  /* --- x axis with months + years --- */
-  const xAxisG = g.append("g")
-    .attr("class", "x-axis")
-    .attr("transform", `translate(0, ${innerH})`);
-
-  // Years
-  xAxisG.append("g")
-    .call(d3.axisBottom(x).ticks(d3.timeYear.every(1)).tickFormat(d3.timeFormat("%Y")))
-    .selectAll("text")
-      .attr("font-family", "var(--f-sans)")
-      .attr("font-size", 12)
-      .attr("fill", cssVar("--c-ink-soft"));
-  xAxisG.selectAll(".domain, .tick line")
-    .attr("stroke", cssVar("--c-line"));
-
-  /* --- milestone stars --- */
-  g.selectAll(".milestone")
-    .data(milestones)
-    .enter().append("g")
-    .attr("class", "milestone")
-    .attr("transform", d => {
-      const date = parseTimelineDate(d.date);
-      return `translate(${x(date)}, ${innerH + 18})`;
-    })
-    .each(function(d) {
-      const node = d3.select(this);
-      node.append("text")
-        .attr("text-anchor", "middle")
-        .attr("font-size", 14)
-        .attr("fill", cssVar("--c-accent"))
-        .attr("aria-label", `Milestone: ${d.label}`)
-        .text("★");
-      node.append("title").text(d.label);
-    });
-
-  /* --- entry bars --- */
+  /* ---- tooltip on hover/focus for axis dots ---- */
   const tooltip = document.getElementById("timeline-tooltip");
-  const showTip = (entry, x, y) => {
+  const showTip = (el) => {
     if (!tooltip) return;
-    const { start, end } = entryDates(entry);
+    const org  = el.dataset.org  ? `<div>${escapeHtml(el.dataset.org)}</div>` : "";
+    const note = el.dataset.note ? `<div class="tip-note">${escapeHtml(el.dataset.note)}</div>` : "";
     tooltip.innerHTML = `
-      <strong>${entry.role}</strong>
-      ${entry.organisation ? `<div>${entry.organisation}</div>` : ""}
-      <div class="tip-dates">${fmtMonthYear(start)} – ${fmtMonthYear(end)}${entry.note ? " · " + entry.note : ""}</div>
+      <strong>${escapeHtml(el.dataset.role)}</strong>
+      ${org}
+      <div class="tip-dates">${escapeHtml(el.dataset.start)} – ${escapeHtml(el.dataset.end)}</div>
+      ${note}
     `;
+    const wrap = container.getBoundingClientRect();
+    const r = el.getBoundingClientRect();
+    tooltip.style.left = (r.left - wrap.left + r.width / 2) + "px";
+    tooltip.style.top  = (r.top  - wrap.top  - 8) + "px";
     tooltip.setAttribute("data-visible", "true");
-    // Position near (x,y) inside the wrap
-    const wrapRect = container.getBoundingClientRect();
-    const left = x - wrapRect.left + 14;
-    const top  = y - wrapRect.top  + 14;
-    tooltip.style.left = left + "px";
-    tooltip.style.top  = top  + "px";
   };
   const hideTip = () => { if (tooltip) tooltip.removeAttribute("data-visible"); };
-
-  const bars = g.selectAll(".entry-bar")
-    .data(entries)
-    .enter().append("g")
-    .attr("class", "entry-bar")
-    .attr("transform", d => `translate(0, ${laneY(d.lane)})`);
-
-  bars.append("rect")
-    .attr("x", d => x(entryDates(d).start))
-    .attr("y", 8)
-    .attr("width", 0)
-    .attr("height", laneH - 24)
-    .attr("rx", 6)
-    .attr("fill", d => laneColor[d.lane] || cssVar("--c-accent"))
-    .attr("opacity", d => d.ongoing ? 0.85 : 1)
-    .attr("tabindex", 0)
-    .attr("role", "img")
-    .attr("aria-label", d => `${d.role} at ${d.organisation || ""}: ${fmtMonthYear(entryDates(d).start)} to ${fmtMonthYear(entryDates(d).end)}`)
-    .style("cursor", "pointer")
-    .on("mouseenter", function(ev, d) {
-      d3.select(this).attr("stroke", cssVar("--c-ink")).attr("stroke-width", 1.5);
-      showTip(d, ev.clientX, ev.clientY);
-    })
-    .on("mousemove", function(ev, d) { showTip(d, ev.clientX, ev.clientY); })
-    .on("mouseleave", function() {
-      d3.select(this).attr("stroke", "none");
-      hideTip();
-    })
-    .on("focus", function(ev, d) {
-      const r = this.getBoundingClientRect();
-      showTip(d, r.left + r.width / 2, r.top);
-    })
-    .on("blur", hideTip)
-    .on("keydown", function(ev) {
-      if (ev.key === "Escape") { hideTip(); this.blur(); }
-    })
-    .transition()
-      .duration(!reducedMotion() ? 700 : 0)
-      .attr("width", d => Math.max(2, x(entryDates(d).end) - x(entryDates(d).start)));
-
-  // Arrow / fade marker for ongoing bars at the right edge
-  bars.each(function(d) {
-    if (!d.ongoing) return;
-    const node = d3.select(this);
-    const start = entryDates(d).start;
-    const endX  = x(new Date());
-    node.append("text")
-      .attr("x", endX + 4)
-      .attr("y", laneH - 16)
-      .attr("font-family", "var(--f-sans)")
-      .attr("font-size", 14)
-      .attr("fill", laneColor[d.lane] || cssVar("--c-accent"))
-      .text("›");
-    // Use the rect width up to "today" so the bar doesn't run to the chart edge
-    node.select("rect").attr("width", Math.max(2, endX - x(start)));
-  });
-
-  /* --- vertical list (mobile) --- */
-  renderTimelineVertical(entries, lanes, milestones);
-  renderTimelineTable(entries, lanes);
-
-  /* --- on theme change, recolour this chart --- */
-  document.addEventListener("theme:changed", () => {
-    // Simplest reliable approach: re-render
-    renderTimeline();
-  });
-}
-
-function renderTimelineVertical(entries, lanes, milestones) {
-  const wrap = document.getElementById("timeline-vertical");
-  if (!wrap) return;
-  wrap.innerHTML = "";
-  lanes.forEach(lane => {
-    const laneEntries = entries.filter(e => e.lane === lane.id);
-    if (laneEntries.length === 0) return;
-    const block = document.createElement("div");
-    block.className = "lane-block";
-    block.innerHTML = `<h4>${lane.label}</h4>`;
-    const ul = document.createElement("ul");
-    laneEntries.forEach(e => {
-      const { start, end } = entryDates(e);
-      const li = document.createElement("li");
-      li.innerHTML = `
-        <span class="role">${e.role}</span>
-        <span class="org">${e.organisation || ""}</span>
-        <span class="dates">${fmtMonthYear(start)} – ${fmtMonthYear(end)}${e.ongoing ? " (ongoing)" : ""}</span>
-      `;
-      ul.appendChild(li);
+  container.querySelectorAll(".dot-axis-dot, .dot-axis-star").forEach(el => {
+    el.addEventListener("mouseenter", () => showTip(el));
+    el.addEventListener("focus",      () => showTip(el));
+    el.addEventListener("mouseleave", hideTip);
+    el.addEventListener("blur",       hideTip);
+    el.addEventListener("keydown", (ev) => {
+      if (ev.key === "Escape") { hideTip(); el.blur(); }
     });
-    block.appendChild(ul);
-    wrap.appendChild(block);
   });
-  // Milestones
-  if (milestones.length) {
-    const block = document.createElement("div");
-    block.className = "lane-block";
-    block.innerHTML = `<h4>Milestones</h4><ul>` +
-      milestones.map(m => `<li><span class="role">★ ${escapeHtml(m.label)}</span><span class="dates">${fmtMonthYear(parseTimelineDate(m.date))}</span></li>`).join("") +
-      `</ul>`;
-    wrap.appendChild(block);
-  }
+
+  /* still populate the data table for accessibility / search engines */
+  renderTimelineTable(entries, data.lanes);
+
+  /* recolour on theme change — D3 still drives ticks/rail via CSS vars,
+     so this is just a re-render to refresh any cached stroke values. */
+  document.addEventListener("theme:changed", () => renderTimeline());
 }
+
+/* renderTimelineVertical removed: the section no longer renders a
+   mobile vertical list — the toggle was disabled in main.js and the
+   timeline now uses a single dot-list visualization for both viewports. */
 
 function renderTimelineTable(entries, lanes) {
   const body = document.getElementById("timeline-table-body");
@@ -348,24 +275,24 @@ async function renderSkillsMatrix() {
 
   const rows = [
     "Python", "SQL", "Data visualisation", "Exploratory data analysis",
-    "Database design", "Public speaking and coaching"
+    "Database design"
   ];
   const cols = [
     { key: "comp3115_cluster",   label: "COMP3115 clustering" },
     { key: "comp3115_pca",       label: "COMP3115 PCA" },
-    { key: "internship",         label: "Internship" },
-    { key: "debate_coaching",    label: "Debate coaching" },
-    { key: "debate_competition", label: "Debate competition" },
-    { key: "tutoring",           label: "Tutoring" }
+    { key: "comp2016_database",  label: "COMP2016 database" },
+    { key: "internship",         label: "Internship" }
   ];
-  // Matrix: rows = skills, cols = contexts; true = used there
+  // Matrix: rows = skills, cols = contexts; true = used there.
+  // COMP2016 has its own column now; internship gets only "Data visualisation".
+  // Python row no longer lights up "tutoring" (per student request).
   const matrix = [
-    [true,  true,  true,  false, false, true ],
-    [false, false, true,  false, false, false],
-    [true,  true,  true,  false, false, false],
-    [true,  true,  true,  false, false, false],
-    [false, false, true,  false, false, false],
-    [false, false, false, true,  true,  true ]
+    // rows:                              cluster, pca,      comp2016,  intern
+    [/* Python                          */ true,   true,   true,   false],
+    [/* SQL                            */ false,  false,  true,   false],
+    [/* Data visualisation             */ true,   true,   false,  true ],
+    [/* Exploratory data analysis      */ true,   true,   false,  false],
+    [/* Database design                */ false,  false,  true,   false]
   ];
 
   const cell = 28;
@@ -416,7 +343,7 @@ async function renderSkillsMatrix() {
 
   // Cells
   const groups = svg.selectAll(".cell-group")
-    .data(rows.map((_, r) => rows.map((__, c) => ({ r, c, filled: matrix[r][c] }))).flat())
+    .data(rows.flatMap((_, r) => cols.map((__, c) => ({ r, c, filled: matrix[r][c] }))))
     .enter().append("g")
     .attr("class", "cell-group")
     .attr("data-row", d => d.r)
@@ -574,52 +501,158 @@ async function renderClusterProfiles() {
   const metrics = data.metrics;
 
   host.innerHTML = "";
-  const grid = document.createElement("div");
-  grid.className = "cluster-grid";
-  host.appendChild(grid);
 
-  // Colour the bars using the categorical cluster palette
-  const clusterFill = (id) => {
-    if (id === 0) return cssVar("--c-cat-0");
-    if (id === 1) return cssVar("--c-cat-1b");
-    return cssVar("--c-cat-2b");
+  // Hard-coded hex colours — guarantees visibility regardless of theme.
+  // Each cluster has its own distinct hue, used in every metric panel.
+  const COLORS = {
+    0: "#c89b3c",  // gold     — Cluster 0
+    1: "#2f6f8f",  // blue     — Cluster 1
+    2: "#b75d3a"   // terracotta — Cluster 2
   };
 
-  clusters.forEach(cl => {
-    const card = document.createElement("div");
-    card.className = "cluster-card";
+  // Layout constants (in SVG user units)
+  const PANEL_W   = 320;
+  const PANEL_H   = 220;
+  const PAD_L     = 90;   // left padding for cluster-name labels
+  const PAD_R     = 50;   // right padding for value labels
+  const PAD_T     = 56;   // top padding for metric title + scale
+  const PAD_B     = 24;   // bottom padding
+  const BAR_H     = 28;
+  const BAR_GAP   = 14;
+  const TRACK_W   = PANEL_W - PAD_L - PAD_R;   // 180 px usable bar width
 
-    const head = document.createElement("div");
-    head.className = "cluster-head";
-    head.innerHTML = `
-      <span class="cluster-title">${escapeHtml(cl.label)}</span>
-      <span class="cluster-counties">${escapeHtml(cl.counties)}</span>
-    `;
-    card.appendChild(head);
+  const wrap = document.createElement("div");
+  wrap.className = "cluster-svg-wrap";
 
-    metrics.forEach(m => {
+  const totalW = metrics.length * PANEL_W;
+  const totalH = PANEL_H;
+  const svgNS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(svgNS, "svg");
+  svg.setAttribute("viewBox", `0 0 ${totalW} ${totalH}`);
+  svg.setAttribute("width", totalW);
+  svg.setAttribute("height", totalH);
+  svg.setAttribute("role", "img");
+  svg.setAttribute("aria-label",
+    "Cluster profiles: three clusters (gold, blue, terracotta) compared on Median AQI, good-day ratio, and mean temperature.");
+
+  metrics.forEach((m, mi) => {
+    const x0 = mi * PANEL_W;
+    const [d0, d1] = m.domain;
+    const range = d1 - d0;
+
+    // Panel card
+    const card = document.createElementNS(svgNS, "rect");
+    card.setAttribute("x", x0 + 6);
+    card.setAttribute("y", 6);
+    card.setAttribute("width", PANEL_W - 12);
+    card.setAttribute("height", PANEL_H - 12);
+    card.setAttribute("rx", 10);
+    card.setAttribute("ry", 10);
+    card.setAttribute("fill", "#f5f1ea");      // matches --c-bg-alt
+    card.setAttribute("stroke", "#d9d3c7");    // matches --c-line
+    svg.appendChild(card);
+
+    // Metric title
+    const title = document.createElementNS(svgNS, "text");
+    title.setAttribute("x", x0 + PAD_L);
+    title.setAttribute("y", 28);
+    title.setAttribute("font-family", "Georgia, 'Times New Roman', serif");
+    title.setAttribute("font-size", "15");
+    title.setAttribute("font-weight", "600");
+    title.setAttribute("fill", "#222");
+    title.textContent = m.label;
+    svg.appendChild(title);
+
+    // Scale subtitle
+    const scale = document.createElementNS(svgNS, "text");
+    scale.setAttribute("x", x0 + PAD_L);
+    scale.setAttribute("y", 46);
+    scale.setAttribute("font-size", "10");
+    scale.setAttribute("fill", "#777");
+    scale.textContent = `scale ${formatValue(m.key, d0)} – ${formatValue(m.key, d1)}`;
+    svg.appendChild(scale);
+
+    // Bars (one per cluster)
+    clusters.forEach((cl, ci) => {
       const value = cl.stats[m.key];
-      const [d0, d1] = m.domain;
-      const pct = Math.max(0, Math.min(1, (value - d0) / (d1 - d0)));
-      const row = document.createElement("div");
-      row.className = "bar-row";
-      row.innerHTML = `
-        <span>${escapeHtml(m.label)}</span>
-        <span class="cluster-bar-track">
-          <span class="cluster-bar-fill" style="width:${(pct * 100).toFixed(1)}%; background:${clusterFill(cl.id)};"></span>
-        </span>
-        <span class="cluster-bar-value">${formatValue(m.key, value)}</span>
-      `;
-      card.appendChild(row);
-    });
+      const pct = Math.max(0, Math.min(1, (value - d0) / range));
+      const barY = PAD_T + ci * (BAR_H + BAR_GAP);
 
-    grid.appendChild(card);
+      // Cluster name (left side)
+      const name = document.createElementNS(svgNS, "text");
+      name.setAttribute("x", x0 + 14);
+      name.setAttribute("y", barY + BAR_H * 0.7);
+      name.setAttribute("font-size", "12");
+      name.setAttribute("font-weight", "500");
+      name.setAttribute("fill", "#333");
+      name.textContent = cl.label;
+      svg.appendChild(name);
+
+      // Colour swatch (small square next to name)
+      const sw = document.createElementNS(svgNS, "rect");
+      sw.setAttribute("x", x0 + 14);
+      sw.setAttribute("y", barY - 8);
+      sw.setAttribute("width", 10);
+      sw.setAttribute("height", 10);
+      sw.setAttribute("rx", 2);
+      sw.setAttribute("fill", COLORS[cl.id]);
+      svg.appendChild(sw);
+      // push name to the right of swatch
+      name.setAttribute("x", x0 + 30);
+
+      // Track (background of bar)
+      const track = document.createElementNS(svgNS, "rect");
+      track.setAttribute("x", x0 + PAD_L);
+      track.setAttribute("y", barY);
+      track.setAttribute("width", TRACK_W);
+      track.setAttribute("height", BAR_H);
+      track.setAttribute("rx", 4);
+      track.setAttribute("fill", "#e8e2d3");   // matches --c-bg-soft
+      svg.appendChild(track);
+
+      // Filled bar — WIDTH DIFFERS PER CLUSTER because pct differs.
+      // Using hex color directly (not CSS var) so it always paints.
+      const fillW = Math.max(2, TRACK_W * pct);
+      const fill = document.createElementNS(svgNS, "rect");
+      fill.setAttribute("x", x0 + PAD_L);
+      fill.setAttribute("y", barY);
+      fill.setAttribute("width", fillW.toFixed(1));
+      fill.setAttribute("height", BAR_H);
+      fill.setAttribute("rx", 4);
+      fill.setAttribute("fill", COLORS[cl.id]);
+      svg.appendChild(fill);
+
+      // Value label at the right end of the bar
+      const val = document.createElementNS(svgNS, "text");
+      val.setAttribute("x", x0 + PAD_L + TRACK_W + 8);
+      val.setAttribute("y", barY + BAR_H * 0.7);
+      val.setAttribute("font-size", "12");
+      val.setAttribute("fill", "#333");
+      val.setAttribute("font-variant-numeric", "tabular-nums");
+      val.textContent = formatValue(m.key, value);
+      svg.appendChild(val);
+    });
   });
+
+  wrap.appendChild(svg);
+
+  // Legend below the SVG
+  const legend = document.createElement("ul");
+  legend.className = "cluster-legend";
+  clusters.forEach(cl => {
+    const li = document.createElement("li");
+    li.innerHTML = `<span class="cl-dot" style="background:${COLORS[cl.id]};"></span>${escapeHtml(cl.label)} · ${escapeHtml(cl.counties)}`;
+    legend.appendChild(li);
+  });
+  wrap.appendChild(legend);
+
+  host.appendChild(wrap);
 }
 
 function formatValue(key, value) {
   if (key === "good_ratio_pct") return value.toFixed(1) + "%";
-  if (key === "Mean temperature") return value.toFixed(2);
+  if (key === "Median AQI") return value.toFixed(2);
+  if (key === "Mean temperature") return value.toFixed(2) + "°C";
   return value.toFixed(2);
 }
 

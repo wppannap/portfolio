@@ -216,47 +216,11 @@ function buildPlaceholderSvgDataUrl(filename) {
 }
 
 /* ---------- 7. TIMELINE VIEW TOGGLE ----------------------------- */
+/* Disabled: the Experience section now shows the chart and the table
+   side-by-side, so the Chart / View-as-table toggle is no longer used.
+   The init function is kept as a no-op so existing call sites stay safe. */
 function initTimelineViews() {
-  const chartBtn  = document.getElementById("timeline-view-chart");
-  const tableBtn  = document.getElementById("timeline-view-table");
-  const tableWrap = document.getElementById("timeline-table-wrap");
-  const vertWrap  = document.getElementById("timeline-vertical");
-  const chartWrap = document.querySelector(".timeline-wrap");
-
-  if (!chartBtn || !tableBtn) return;
-
-  const isMobile = () => window.matchMedia("(max-width: 760px)").matches;
-
-  const show = (mode) => {
-    const mobile = isMobile();
-    // mode is "chart" or "table"
-    chartBtn.setAttribute("aria-pressed", String(mode === "chart"));
-    tableBtn.setAttribute("aria-pressed", String(mode === "table"));
-
-    if (mode === "table") {
-      if (tableWrap) tableWrap.setAttribute("data-visible", "true");
-      if (vertWrap)  vertWrap.removeAttribute("data-visible");
-      if (chartWrap) chartWrap.style.display = "none";
-    } else {
-      if (tableWrap) tableWrap.removeAttribute("data-visible");
-      if (mobile) {
-        // Mobile chart view = vertical list
-        if (vertWrap) vertWrap.setAttribute("data-visible", "true");
-        if (chartWrap) chartWrap.style.display = "none";
-      } else {
-        if (vertWrap) vertWrap.removeAttribute("data-visible");
-        if (chartWrap) chartWrap.style.display = "";
-      }
-    }
-  };
-
-  chartBtn.addEventListener("click", () => show("chart"));
-  tableBtn.addEventListener("click", () => show("table"));
-  window.addEventListener("resize", () => {
-    const isTable = tableBtn.getAttribute("aria-pressed") === "true";
-    show(isTable ? "table" : "chart");
-  });
-  show("chart");
+  // No-op: the toggle buttons were removed from the markup.
 }
 
 /* ---------- BOOT ------------------------------------------------ */

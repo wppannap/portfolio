@@ -409,6 +409,33 @@ section { padding: clamp(56px, 8vw, 96px) 0; }
 .case-body ul { padding-left: 1.4em; margin: 0 0 1.2em; }
 .case-body li { margin-bottom: 0.4em; }
 
+/* COMP2016 ER diagram: desktop two-column split, mobile stacked */
+.er-split {
+  display: grid;
+  grid-template-columns: minmax(0, 420px) 1fr;
+  gap: clamp(20px, 3vw, 36px);
+  align-items: start;
+  margin: 1.4em 0;
+}
+.er-split .er-image {
+  display: flex;
+  justify-content: center;
+}
+.er-split .er-image img {
+  width: 100%;
+  height: auto;
+  max-width: 420px;
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  background: var(--c-bg-alt);
+}
+.er-split .er-read ol {
+  margin: 0; padding-left: 1.2em;
+  color: var(--c-ink-soft);
+  font-size: 0.96rem;
+}
+.er-split .er-read li { margin-bottom: 0.5em; }
+
 /* Cluster table */
 .cluster-table {
   width: 100%;
@@ -498,6 +525,165 @@ section { padding: clamp(56px, 8vw, 96px) 0; }
 .timeline-legend .swatch {
   display: inline-block; width: 12px; height: 12px;
   border-radius: 3px; margin-right: 6px; vertical-align: -1px;
+}
+
+/* --- Dot-axis timeline (decorative, no proportional bars) ---- */
+.dot-axis {
+  position: relative;
+  height: 70px;
+  margin: 6px 8px 4px;
+}
+.dot-axis-ticks {
+  position: absolute; inset: 0 0 0 0;
+  display: grid;
+  grid-template-columns: repeat(var(--years, 5), 1fr);
+  pointer-events: none;
+}
+.dot-axis-tick {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  font-family: var(--f-sans);
+  font-size: 0.78rem;
+  color: var(--c-ink-mute);
+}
+.dot-axis-tick i {
+  width: 1px; height: 8px;
+  background: var(--c-line);
+  display: block;
+  margin-bottom: 4px;
+}
+.dot-axis-tick b { font-weight: 500; }
+.dot-axis-rail {
+  position: absolute;
+  left: 0; right: 0;
+  top: 22px;
+  height: 1px;
+  background: var(--c-line);
+}
+.dot-axis-dots { position: absolute; inset: 0; }
+.dot-axis-dot,
+.dot-axis-star {
+  position: absolute;
+  top: 14px;
+  width: 18px; height: 18px;
+  margin-left: -9px;
+  border-radius: 50%;
+  background: var(--c-accent);
+  border: 2px solid var(--c-bg-alt);
+  box-shadow: 0 0 0 1px var(--c-line);
+  cursor: pointer;
+  transition: transform var(--t-fast), box-shadow var(--t-fast);
+}
+.dot-axis-dot:focus,
+.dot-axis-star:focus { outline: none; }
+.dot-axis-dot:focus-visible,
+.dot-axis-star:focus-visible {
+  outline: 2px solid var(--c-accent);
+  outline-offset: 3px;
+}
+.dot-axis-dot:hover,
+.dot-axis-dot:focus-visible,
+.dot-axis-star:hover,
+.dot-axis-star:focus-visible {
+  transform: scale(1.25);
+  box-shadow: 0 0 0 1px var(--c-ink), 0 6px 14px rgba(0,0,0,.12);
+}
+.dot-axis-dot.dot-lane-education { background: var(--c-cat-1); }
+.dot-axis-dot.dot-lane-work      { background: var(--c-cat-2); }
+.dot-axis-dot.dot-lane-teaching  { background: var(--c-cat-3); }
+.dot-axis-dot.ongoing::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1px dashed currentColor;
+  color: var(--c-ink-mute);
+  opacity: .55;
+}
+.dot-axis-star {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: var(--c-accent);
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  margin-left: -11px;
+  top: 12px;
+}
+.dot-axis-star:hover,
+.dot-axis-star:focus-visible {
+  background: transparent;
+  box-shadow: none;
+  transform: scale(1.3);
+}
+
+/* --- Activity list under the dot-axis ----------------------- */
+.dot-list {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.dot-list-item {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  gap: 14px;
+  align-items: start;
+  padding: 12px 14px;
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-md);
+  background: var(--c-bg);
+}
+.dot-list-bullet {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-top: 6px;
+  background: var(--c-accent);
+  display: inline-block;
+  flex-shrink: 0;
+}
+.dot-list-item.dot-list-milestone .dot-list-bullet {
+  background: transparent;
+  color: var(--c-accent);
+  font-size: 14px;
+  line-height: 12px;
+  text-align: center;
+}
+.dot-list-body { min-width: 0; }
+.dot-list-role {
+  font-weight: 600;
+  color: var(--c-ink);
+  font-size: 0.98rem;
+}
+.dot-list-org {
+  color: var(--c-ink-soft);
+  font-size: 0.88rem;
+  margin-top: 2px;
+}
+.dot-list-dates {
+  color: var(--c-ink-mute);
+  font-size: 0.8rem;
+  margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.dot-list-milestones {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--c-line);
+}
+
+@media (max-width: 640px) {
+  .dot-axis { height: 60px; margin: 0 4px; }
+  .dot-axis-dot, .dot-axis-star { width: 14px; height: 14px; margin-left: -7px; }
 }
 
 .timeline-toggle {
@@ -649,19 +835,63 @@ section { padding: clamp(56px, 8vw, 96px) 0; }
 }
 .cluster-bar-value { color: var(--c-ink-mute); font-variant-numeric: tabular-nums; text-align: right; }
 
+/* Cluster profiles — inline SVG grouped bars
+   (one panel per metric, 3 coloured bars per panel, 3 panels side by side) */
+.cluster-svg-wrap {
+  margin-top: 12px;
+}
+.cluster-svg-wrap svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+.cluster-legend {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 0;
+  display: flex; flex-wrap: wrap; gap: 14px;
+  font-size: 0.85rem;
+  color: var(--c-ink-soft);
+}
+.cluster-legend li { display: inline-flex; align-items: center; }
+.cl-dot {
+  display: inline-block;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
 /* 10. IMAGE PLACEHOLDERS & LIGHTBOX ---------------------------- */
 .figure-wrap {
   margin: 1.6em 0;
 }
-.figure-wrap.tall    { aspect-ratio: 16 / 9; }
-.figure-wrap.square  { aspect-ratio: 4 / 3; }
-.figure-wrap.portrait{ aspect-ratio: 3 / 4; }
-.figure-wrap.wide    { aspect-ratio: 21 / 9; }
+/* Variant classes are kept as markers only; they DO NOT set a fixed
+   aspect-ratio or max-height any more. Figures always render at
+   their real aspect ratio, so titles, axis labels and colour bars
+   stay visible inside the page. The lightbox still exists as an
+   optional zoom. */
+.figure-wrap.tall,
+.figure-wrap.square,
+.figure-wrap.portrait,
+.figure-wrap.wide { /* no aspect-ratio */ }
+
+/* ER diagram is portrait — never crop it. */
+.figure-wrap.figure-er {
+  display: flex;
+  justify-content: center;
+}
+.figure-wrap.figure-er img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: none;
+}
 
 .img-placeholder, .figure-wrap > img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   border-radius: var(--radius);
   display: block;
 }
@@ -698,6 +928,19 @@ section { padding: clamp(56px, 8vw, 96px) 0; }
   border: 1px solid var(--c-line);
 }
 
+/* Global rule: every figure image is fully visible in-page.
+   The lightbox still offers a click-to-zoom, but the in-page image
+   already shows the title, axes and colour bar. */
+.case-body figure img,
+.case-body figure.figure-wrap img,
+.hero .figure-wrap img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: var(--c-bg-alt);
+}
+
 /* Lightbox */
 .lightbox {
   position: fixed; inset: 0;
@@ -717,6 +960,165 @@ section { padding: clamp(56px, 8vw, 96px) 0; }
   font-size: 1.2rem;
   display: inline-flex; align-items: center; justify-content: center;
 }
+
+/* 10b. HERO (two-column desktop, stacked mobile) ---------------- */
+.hero-visual-frame {
+  background: var(--c-bg-alt);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  box-shadow: var(--shadow-sm);
+}
+.hero-visual-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--c-line-soft);
+  background: var(--c-bg-alt);
+}
+
+/* 10c. INTERNSHIP (compact card) ------------------------------- */
+.internship-card { display: none; } /* legacy block — removed from markup */
+
+/* 10d. SQL VIEWER (tabs + code) ------------------------------- */
+.sql-viewer {
+  margin: 1.4em 0;
+  background: var(--c-bg-alt);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.sql-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--c-line);
+  background: var(--c-bg-soft);
+  overflow-x: auto;
+}
+.sql-tabs button {
+  background: transparent;
+  border: none;
+  color: var(--c-ink-soft);
+  padding: 10px 16px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.sql-tabs button[aria-selected="true"] {
+  color: var(--c-ink);
+  border-bottom-color: var(--c-accent);
+  background: var(--c-bg-alt);
+}
+.sql-tabs button:focus-visible { outline: 2px solid var(--c-accent); outline-offset: -2px; }
+
+.sql-code-wrap {
+  position: relative;
+  background: #1c1b18;          /* dark code surface, theme-resistant */
+  color: #efece6;
+}
+.sql-code-wrap pre {
+  margin: 0;
+  padding: 16px 16px 16px 56px; /* gutter space for line numbers */
+  overflow-x: auto;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  counter-reset: line;
+  white-space: pre;
+}
+.sql-code-wrap .line-num {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 44px;
+  padding: 16px 8px;
+  text-align: right;
+  color: #77736d;
+  background: #232220;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  user-select: none;
+}
+.sql-code-wrap .line-num span {
+  display: block;
+  counter-increment: line;
+}
+.sql-code-wrap .line-num span::before { content: counter(line); }
+
+.sql-copy {
+  position: absolute;
+  top: 8px; right: 12px;
+  background: rgba(255,255,255,0.08);
+  color: #efece6;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 6px;
+  font-size: 0.78rem;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+.sql-copy:hover { background: rgba(255,255,255,0.14); }
+.sql-copy:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
+
+.sql-annotation {
+  padding: 14px 16px;
+  border-top: 1px solid var(--c-line);
+  font-size: 0.9rem;
+  color: var(--c-ink-soft);
+  background: var(--c-bg-alt);
+}
+.sql-annotation table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+.sql-annotation th, .sql-annotation td {
+  text-align: left;
+  vertical-align: top;
+  padding: 6px 10px 6px 0;
+  border-bottom: 1px dashed var(--c-line-soft);
+}
+.sql-annotation th {
+  width: 32%;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  color: var(--c-ink);
+  white-space: nowrap;
+}
+
+/* Minimal highlight.js dark theme (sql language). The page loads
+   hljs from cdnjs; if it fails to load, the code still shows. */
+.hljs              { color: #efece6; background: transparent; }
+.hljs-keyword,
+.hljs-built_in     { color: #e89572; font-weight: 600; }
+.hljs-string       { color: #a3c489; }
+.hljs-number       { color: #e8c36c; }
+.hljs-comment      { color: #77736d; font-style: italic; }
+.hljs-symbol,
+.hljs-operator,
+.hljs-punctuation  { color: #efece6; }
+.hljs-type         { color: #6fb5d0; }
+
+/* Inline placeholder marker (for COMP2016 dates/role). */
+.ph {
+  background: var(--c-bg-soft);
+  color: var(--c-ink-mute);
+  padding: 1px 6px;
+  border-radius: 4px;
+  border: 1px dashed var(--c-line);
+  font-size: 0.88em;
+}
+
+/* 10f. BOOKING FLOW DIAGRAM (inline SVG) ------------------------ */
+.flow-diagram {
+  background: var(--c-bg-alt);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  margin: 1.4em 0;
+}
+.flow-diagram svg { width: 100%; height: auto; display: block; }
+.flow-diagram .visually-hidden { position: absolute; left:-10000px; }
 
 /* 11. TEACHING & CONTACT --------------------------------------- */
 .school-grid {
@@ -769,6 +1171,7 @@ section { padding: clamp(56px, 8vw, 96px) 0; }
   .about-grid { grid-template-columns: 1fr; }
   .cluster-grid { grid-template-columns: 1fr; }
   .school-grid { grid-template-columns: 1fr; }
+  .er-split { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 520px) {
@@ -794,4 +1197,79 @@ section { padding: clamp(56px, 8vw, 96px) 0; }
     transition-duration: 0.001ms !important;
   }
   .reveal { opacity: 1; transform: none; }
+}
+
+/* 15. PRINT ---------------------------------------------------- */
+/* When the page is printed (or saved as PDF), figures must fit on
+   the page, columns must collapse to one, and dark backgrounds must
+   not waste ink. The on-screen layout is untouched. */
+@media print {
+  @page { margin: 12mm; }
+
+  body { font-size: 10pt; color: #000; background: #fff; max-width: 100%; overflow: visible !important; }
+  .site-header, .site-footer, .nav-actions, .read-progress, .skip-link,
+  .theme-toggle, .nav-toggle, .timeline-toggle, .back-to-top,
+  .sql-copy, .timeline-wrap > .timeline-toggle { display: none !important; }
+
+  .hero, section { padding: 8pt 0; }
+  .hero-grid, .about-grid, .cluster-grid, .school-grid, .er-split {
+    grid-template-columns: 1fr !important;
+    gap: 8pt !important;
+  }
+  .hero-visual-frame, .chart-card, .cluster-card, .school-card,
+  .figure-wrap, .flow-diagram, .sql-viewer {
+    box-shadow: none !important;
+    border: 1px solid #888 !important;
+    background: #fff !important;
+    margin: 6pt 0 !important;
+    padding: 8pt !important;
+  }
+
+  /* Figures scale to page width and stay within a page so we don't
+     get trailing blank pages between a figure and the next text. */
+  figure img, .hero-visual-frame img, .er-split img,
+  .chart-svg-wrap svg {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    max-height: 130mm !important;
+  }
+  /* ER portrait: cap height so the very tall diagram still fits */
+  .figure-wrap.figure-er img { max-height: 195mm !important; height: auto; }
+  .figure-wrap { page-break-inside: auto; break-inside: auto; margin: 4pt 0 !important; padding: 0 !important; border: none !important; }
+
+  /* Tables shouldn't be split across pages (let them flow). */
+  .cluster-table-wrap, .timeline-table-wrap, .sql-annotation { page-break-inside: avoid; }
+  /* Section case-studies start on a new page when possible */
+  .case-study { page-break-before: auto; }
+  /* Keep hero together */
+  .hero { page-break-after: avoid; page-break-inside: avoid; }
+  .hero-visual-frame { page-break-inside: avoid; }
+  /* Keep case-study header with following content */
+  .case-study > header { page-break-after: avoid; }
+
+  /* SQL code dark surface is too heavy for ink; switch to a light box */
+  .sql-code-wrap, .sql-code-wrap pre, .sql-code-wrap code {
+    background: #fff !important;
+    color: #000 !important;
+    border: 1px solid #888 !important;
+  }
+  .sql-code-wrap pre { padding: 8pt 8pt 8pt 24pt; font-size: 8.5pt; line-height: 1.35; }
+  .sql-code-wrap .line-num { background: #eee !important; color: #444 !important; }
+
+  /* Booking flow SVG: print-friendly outline */
+  .flow-diagram svg rect, .flow-diagram svg polygon,
+  .flow-diagram svg path { stroke: #000 !important; }
+  .flow-diagram svg rect[fill]  { fill: #fff !important; }
+  .flow-diagram svg polygon     { fill: #fff !important; }
+  .flow-diagram svg text        { fill: #000 !important; }
+
+  /* Keep each case study with its figures */
+  .case-study, .case-body, .chart-card { page-break-inside: auto; }
+  .case-study > header { page-break-after: avoid; }
+  .case-body h4 { break-after: avoid; page-break-after: avoid; }
+
+  a { color: #000; text-decoration: underline; }
+  .ph { background: #fff !important; border: 1px dashed #555 !important; }
 }
