@@ -1001,23 +1001,26 @@ section { padding: clamp(56px, 8vw, 96px) 0; }
   background: var(--c-bg-alt);
   border: 1px solid var(--c-line);
   border-radius: var(--radius-lg);
-  padding: 14px;
+  padding: 10px;
   box-shadow: var(--shadow-sm);
-  /* Hero is a portrait frame — fixed aspect ratio so the image is cropped consistently */
-  aspect-ratio: 4 / 5;
-  max-height: 560px;
+  /* Square frame so the 1:1 portrait fills edge-to-edge with no side gutters. */
+  aspect-ratio: 1 / 1;
+  width: min(100%, 460px);
+  height: auto;
+  max-height: 460px;
+  margin-left: auto;
+  margin-right: auto;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
 }
+.hero-visual-frame > * { width: 100%; height: 100%; display: block; }
 .hero-visual-frame img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 22%;        /* bias upward so faces stay in frame */
-  transform: scale(1.25);             /* zoom in ~25% so top/bottom ~10% is cropped */
+  transform: scale(1.18);            /* zoom in so top/bottom ~10% is cropped */
   transform-origin: center 22%;       /* keep the bias point stable while zooming */
   border-radius: var(--radius);
   border: 1px solid var(--c-line-soft);
