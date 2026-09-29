@@ -1,0 +1,211 @@
+County Code,State,County,Good,Moderate,Unhealthy for Sensitive Groups,Unhealthy,Very Unhealthy,Hazardous,AQI Maximum,AQI 90th Percentile,AQI Median,# Days CO,# Days NO2,# Days O3,# Days PM2.5,# Days PM10
+6005,California,Amador County,318,46,0,0,0,0,97,54,38,0,0,364,0,0
+6007,California,Butte County,237,128,0,0,0,0,96,61,46,0,0,190,175,0
+6009,California,Calaveras County,295,64,0,0,0,0,100,57,40,0,0,257,100,2
+6011,California,Colusa County,289,76,0,0,0,0,96,56,40,0,0,178,180,7
+6015,California,Del Norte County,288,64,0,0,0,0,70,54,32,0,0,0,352,0
+6017,California,El Dorado County,320,44,1,0,0,0,115,54,40,0,0,364,0,1
+6019,California,Fresno County,105,226,31,3,0,0,164,100,61,0,0,202,153,10
+6021,California,Glenn County,292,73,0,0,0,0,94,54,40,0,0,216,125,24
+6023,California,Humboldt County,285,80,0,0,0,0,87,55,38,0,0,142,205,18
+6025,California,Imperial County,101,220,34,9,0,1,426,108,64,0,1,190,76,98
+6027,California,Inyo County,183,169,9,1,2,1,411,81,50,0,0,261,89,15
+6029,California,Kern County,64,236,61,4,0,0,200,112,70,0,0,193,158,14
+6031,California,Kings County,126,228,11,0,0,0,133,85,57,0,0,150,187,28
+6033,California,Lake County,360,3,0,0,0,0,74,39,31,0,0,350,13,0
+6037,California,Los Angeles County,39,228,66,31,1,0,201,147,74,0,5,193,154,13
+6039,California,Madera County,184,178,3,0,0,0,136,76,50,0,0,201,146,18
+6041,California,Marin County,60,7,0,0,0,0,62,53,22,0,0,0,67,0
+6043,California,Mariposa County,292,46,0,0,0,0,90,58,44,0,0,337,1,0
+6045,California,Mendocino County,269,96,0,0,0,0,81,59,38,0,0,135,228,2
+6047,California,Merced County,188,177,0,0,0,0,100,77,50,0,0,222,133,10
+6051,California,Mono County,329,29,3,2,1,1,704,50,21,0,0,0,212,153
+6053,California,Monterey County,314,51,0,0,0,0,62,53,38,0,0,167,169,29
+6057,California,Nevada County,289,72,1,0,0,0,108,58,42,0,0,249,113,0
+6059,California,Orange County,139,213,11,2,0,0,159,79,53,0,7,112,244,2
+6061,California,Placer County,167,196,2,0,0,0,143,71,52,0,0,211,154,0
+6063,California,Plumas County,193,162,10,0,0,0,120,84,45,0,0,0,365,0
+6065,California,Riverside County,39,217,75,33,0,1,365,150,80,0,0,202,125,38
+6067,California,Sacramento County,198,162,5,0,0,0,122,72,49,0,0,199,166,0
+6069,California,San Benito County,338,27,0,0,0,0,71,49,38,0,0,290,75,0
+6071,California,San Bernardino County,46,209,67,39,4,0,207,156,77,0,4,224,127,10
+6073,California,San Diego County,65,270,23,7,0,0,161,100,66,0,0,155,202,8
+6077,California,San Joaquin County,219,146,0,0,0,0,93,67,46,0,0,153,206,6
+6079,California,San Luis Obispo County,191,167,7,0,0,0,119,67,50,0,0,187,175,3
+6083,California,Santa Barbara County,164,201,0,0,0,0,87,61,52,0,0,66,291,8
+6087,California,Santa Cruz County,320,45,0,0,0,0,71,53,35,0,0,180,185,0
+6089,California,Shasta County,276,88,0,1,0,0,154,61,44,0,0,277,88,0
+6093,California,Siskiyou County,60,2,0,0,0,0,52,23,11.5,0,0,0,62,0
+6095,California,Solano County,353,3,0,0,0,0,61,42,33,0,0,354,0,2
+6097,California,Sonoma County,365,0,0,0,0,0,39,17,9,0,0,0,0,365
+6099,California,Stanislaus County,182,180,3,0,0,0,115,80,51,0,0,224,137,4
+6101,California,Sutter County,230,134,0,0,0,0,100,64,47,0,0,206,158,0
+6103,California,Tehama County,284,80,1,0,0,0,108,54,38,0,0,174,185,6
+6105,California,Trinity County,229,99,1,1,0,0,164,65,31.5,0,0,0,330,0
+6107,California,Tulare County,90,236,39,0,0,0,147,101,63,0,0,187,171,7
+6109,California,Tuolumne County,294,43,1,0,0,0,105,54,39,0,0,338,0,0
+6111,California,Ventura County,190,167,8,0,0,0,131,67,50,0,0,196,163,6
+6113,California,Yolo County,213,152,0,0,0,0,100,63,47,0,0,151,214,0
+48013,Texas,Atascosa County,259,82,0,0,0,0,92,61,35,0,0,0,341,0
+48027,Texas,Bell County,241,120,4,0,0,0,140,65,45,0,0,232,133,0
+48029,Texas,Bexar County,158,196,10,1,0,0,154,80,52,0,3,150,206,6
+48037,Texas,Bowie County,188,153,1,0,0,0,107,59,48,0,0,0,342,0
+48039,Texas,Brazoria County,295,62,8,0,0,0,143,71,35,0,10,327,28,0
+48041,Texas,Brazos County,233,107,0,0,0,0,78,57,40,0,0,0,340,0
+48043,Texas,Brewster County,277,86,0,1,0,0,164,64,42,0,0,257,107,0
+48061,Texas,Cameron County,109,248,8,0,0,0,139,76,57,0,0,46,319,0
+48085,Texas,Collin County,272,64,20,3,0,0,156,90,40,0,0,359,0,0
+48109,Texas,Culberson County,47,19,1,1,0,0,159,84,37,0,0,0,68,0
+48113,Texas,Dallas County,148,206,10,0,0,1,304,77,53,0,8,142,212,3
+48121,Texas,Denton County,211,135,17,2,0,0,179,87,47,0,1,228,136,0
+48135,Texas,Ector County,259,97,0,2,0,0,183,58,39,0,0,0,358,0
+48139,Texas,Ellis County,323,39,0,0,0,0,93,51,35,0,4,358,0,0
+48141,Texas,El Paso County,66,236,33,12,6,12,2122,123,70,0,2,104,75,184
+48167,Texas,Galveston County,218,139,6,2,0,0,179,68,45,0,0,215,150,0
+48183,Texas,Gregg County,316,48,1,0,0,0,115,54,36,0,1,364,0,0
+48201,Texas,Harris County,40,287,28,10,0,0,172,101,62,0,1,96,247,21
+48203,Texas,Harrison County,235,130,0,0,0,0,100,59,44,0,0,119,246,0
+48215,Texas,Hidalgo County,162,199,4,0,0,0,140,69,52,0,0,64,290,11
+48221,Texas,Hood County,296,55,4,0,0,0,122,61,38,0,0,355,0,0
+48231,Texas,Hunt County,332,29,1,0,0,0,119,50,34,0,16,346,0,0
+48245,Texas,Jefferson County,175,187,2,1,0,0,160,67,51,0,0,138,227,0
+48251,Texas,Johnson County,300,50,1,0,0,0,101,58,37,0,0,351,0,0
+48255,Texas,Karnes County,356,0,0,0,0,0,32,16,6,0,356,0,0,0
+48257,Texas,Kaufman County,241,122,2,0,0,0,126,60,44,0,5,150,210,0
+48273,Texas,Kleberg County,62,57,1,0,0,0,107,73,48.5,0,0,0,120,0
+48303,Texas,Lubbock County,314,22,1,1,0,0,167,46,24,0,0,0,338,0
+48309,Texas,McLennan County,170,192,3,0,0,0,142,65,51,4,0,92,269,0
+48323,Texas,Maverick County,221,130,0,0,0,0,90,62,42,0,0,0,351,0
+48339,Texas,Montgomery County,142,213,8,0,0,0,133,67,53,0,0,119,244,0
+48349,Texas,Navarro County,215,147,1,0,0,0,107,65,47,0,0,204,159,0
+48355,Texas,Nueces County,148,209,8,0,0,0,137,76,53,0,0,77,285,3
+48361,Texas,Orange County,219,145,0,0,0,0,90,59,45,0,0,115,249,0
+48367,Texas,Parker County,283,54,9,0,0,0,147,61,38,0,0,346,0,0
+48373,Texas,Polk County,326,17,1,0,0,0,105,48,33,0,0,344,0,0
+48375,Texas,Potter County,301,19,0,0,0,0,85,41,16,0,0,0,320,0
+48381,Texas,Randall County,298,62,0,0,0,0,97,61,41,0,0,360,0,0
+48397,Texas,Rockwall County,276,7,2,0,0,0,108,45,31,0,0,285,0,0
+48423,Texas,Smith County,330,35,0,0,0,0,93,50,35,0,10,355,0,0
+48439,Texas,Tarrant County,116,219,28,2,0,0,162,97,56,0,4,134,227,0
+48453,Texas,Travis County,159,200,6,0,0,0,129,71,52,0,1,134,226,4
+48469,Texas,Victoria County,312,48,0,0,0,0,100,58,34,0,0,360,0,0
+48479,Texas,Webb County,182,178,5,0,0,0,121,71,51,0,0,136,221,8
+48493,Texas,Wilson County,362,0,0,0,0,0,41,19,8,0,362,0,0,0
+36001,New York,Albany County,250,110,5,0,0,0,136,64,39,0,0,132,233,0
+36005,New York,Bronx County,216,141,8,0,0,0,143,67,45,0,26,105,234,0
+36013,New York,Chautauqua County,317,38,1,0,0,0,108,52,36,0,0,336,20,0
+36027,New York,Dutchess County,342,19,3,0,0,0,140,46,34,0,0,364,0,0
+36029,New York,Erie County,233,121,11,0,0,0,140,67,44,0,2,147,216,0
+36031,New York,Essex County,306,54,4,1,0,0,159,61,41,0,0,321,44,0
+36041,New York,Hamilton County,345,10,0,0,0,0,87,44,34,0,0,355,0,0
+36045,New York,Jefferson County,336,19,0,0,0,0,87,47,34,0,0,355,0,0
+36047,New York,Kings County,233,132,0,0,0,0,99,63,39,0,0,0,365,0
+36055,New York,Monroe County,271,87,7,0,0,0,135,61,39,0,0,197,168,0
+36059,New York,Nassau County,287,77,0,0,0,0,92,58,29,0,0,0,364,0
+36061,New York,New York County,183,176,6,0,0,0,136,69,50,0,0,84,281,0
+36063,New York,Niagara County,328,24,1,0,0,0,115,48,34,0,0,353,0,0
+36065,New York,Oneida County,298,55,0,0,0,0,99,54,27,0,0,0,353,0
+36067,New York,Onondaga County,298,56,4,0,0,0,125,57,36,0,0,245,113,0
+36071,New York,Orange County,311,46,1,0,0,0,108,53,27,0,0,0,358,0
+36075,New York,Oswego County,319,9,0,0,0,0,80,44,33.5,0,0,328,0,0
+36079,New York,Putnam County,323,20,0,0,0,0,97,46,33,0,0,343,0,0
+36081,New York,Queens County,232,126,6,1,0,0,154,64,44,0,34,147,184,0
+36085,New York,Richmond County,270,92,3,0,0,0,129,61,41,0,0,171,194,0
+36087,New York,Rockland County,312,46,7,0,0,0,136,56,37,0,0,234,131,0
+36091,New York,Saratoga County,310,12,0,0,0,0,93,44,34,0,0,322,0,0
+36101,New York,Steuben County,304,58,3,0,0,0,143,57,38,0,0,262,103,0
+36103,New York,Suffolk County,265,95,3,2,0,0,154,64,41,0,0,246,119,0
+36109,New York,Tompkins County,331,24,0,0,0,0,74,47,35,0,0,355,0,0
+36117,New York,Wayne County,339,15,1,0,0,0,150,46,33,0,0,355,0,0
+36119,New York,Westchester County,301,58,6,0,0,0,136,56,38,0,0,247,118,0
+17001,Illinois,Adams County,231,13,0,0,0,0,71,49,37.5,0,0,244,0,0
+17019,Illinois,Champaign County,240,121,4,0,0,0,138,66,43,0,0,187,178,0
+17023,Illinois,Clark County,333,22,0,0,0,0,87,48,33,0,0,355,0,0
+17031,Illinois,Cook County,149,191,20,5,0,0,168,84,53,0,30,103,222,10
+17043,Illinois,DuPage County,233,126,5,1,0,0,158,67,42,0,0,120,245,0
+17049,Illinois,Effingham County,231,11,0,0,0,0,84,46,35,0,0,242,0,0
+17065,Illinois,Hamilton County,245,116,0,0,0,0,98,61,42,0,0,145,216,0
+17083,Illinois,Jersey County,259,95,3,1,0,0,156,67,42,0,0,189,169,0
+17085,Illinois,Jo Daviess County,325,16,0,0,0,0,87,46,33,0,0,341,0,0
+17089,Illinois,Kane County,226,130,8,1,0,0,165,73,45,0,0,142,223,0
+17097,Illinois,Lake County,196,32,3,0,0,0,108,61,39,0,0,231,0,0
+17111,Illinois,McHenry County,247,105,11,1,0,0,165,71,42,0,0,175,189,0
+17113,Illinois,McLean County,241,120,3,1,0,0,154,67,44,0,0,154,211,0
+17115,Illinois,Macon County,237,125,3,0,0,0,141,64,44,0,0,136,229,0
+17117,Illinois,Macoupin County,334,29,1,0,0,0,105,49,33.5,0,124,240,0,0
+17119,Illinois,Madison County,191,170,3,0,1,0,260,70,49,0,0,117,246,2
+17143,Illinois,Peoria County,214,139,2,2,0,0,154,66,45,0,0,117,240,0
+17157,Illinois,Randolph County,248,115,0,1,0,0,161,61,43,0,0,135,229,0
+17161,Illinois,Rock Island County,244,119,0,2,0,0,167,61,41,0,0,122,243,0
+17163,Illinois,Saint Clair County,213,149,2,1,0,0,161,63,47,0,9,68,288,0
+17167,Illinois,Sangamon County,256,106,3,0,0,0,142,61,41,0,0,142,223,0
+17197,Illinois,Will County,225,135,4,1,0,0,156,71,44,0,0,117,248,0
+17201,Illinois,Winnebago County,244,105,5,1,0,0,169,67,40,0,0,136,219,0
+12001,Florida,Alachua County,323,41,0,0,0,0,69,51,37,0,0,162,202,0
+12003,Florida,Baker County,253,109,1,1,0,0,155,55,44,0,0,55,309,0
+12005,Florida,Bay County,239,121,0,0,0,0,92,56,43.5,0,0,97,263,0
+12009,Florida,Brevard County,333,32,0,0,0,0,80,50,38,0,0,297,68,0
+12011,Florida,Broward County,268,97,0,0,0,0,93,58,43,0,7,146,212,0
+12017,Florida,Citrus County,258,104,1,0,0,0,125,55,43,0,0,0,363,0
+12021,Florida,Collier County,263,102,0,0,0,0,71,55,43,0,0,115,250,0
+12023,Florida,Columbia County,209,156,0,0,0,0,80,59,48,0,0,54,311,0
+12031,Florida,Duval County,175,186,4,0,0,0,136,62,51,0,3,62,300,0
+12033,Florida,Escambia County,269,95,1,0,0,0,104,57,43,0,0,164,201,0
+12035,Florida,Flagler County,357,7,0,0,0,0,77,45,34,0,0,364,0,0
+12047,Florida,Hamilton County,212,140,0,0,0,0,72,57,46,0,0,0,352,0
+12055,Florida,Highlands County,338,18,0,0,0,0,80,47,35,0,0,356,0,0
+12057,Florida,Hillsborough County,194,169,2,0,0,0,122,63,49,0,1,121,240,3
+12059,Florida,Holmes County,219,146,0,0,0,0,79,58,46,0,0,53,312,0
+12061,Florida,Indian River County,302,19,0,0,0,0,87,48,37,0,0,321,0,0
+12069,Florida,Lake County,342,17,1,0,0,0,112,47,35,0,0,360,0,0
+12071,Florida,Lee County,279,86,0,0,0,0,97,56,40,0,0,197,168,0
+12073,Florida,Leon County,206,158,1,0,0,0,140,60,48,0,0,64,301,0
+12077,Florida,Liberty County,336,5,0,0,0,0,77,44,33,0,0,341,0,0
+12081,Florida,Manatee County,332,33,0,0,0,0,97,50,36,0,0,365,0,0
+12083,Florida,Marion County,245,118,1,0,0,0,101,57,45.5,0,0,115,249,0
+12085,Florida,Martin County,290,75,0,0,0,0,74,55,40,0,0,159,206,0
+12086,Florida,Miami-Dade County,206,158,1,0,0,0,113,61,47,0,8,72,285,0
+12091,Florida,Okaloosa County,338,22,0,0,0,0,84,47.5,36,0,0,326,0,34
+12095,Florida,Orange County,266,98,1,0,0,0,105,58,43,0,4,177,184,0
+12097,Florida,Osceola County,305,59,1,0,0,0,105,53,40,0,0,206,159,0
+12099,Florida,Palm Beach County,279,86,0,0,0,0,87,57,39,0,0,137,228,0
+12101,Florida,Pasco County,338,26,1,0,0,0,115,49,37,0,0,365,0,0
+12103,Florida,Pinellas County,254,110,1,0,0,0,129,57,44,0,0,167,194,4
+12105,Florida,Polk County,339,16,0,0,0,0,100,46,34,0,0,355,0,0
+12107,Florida,Putnam County,349,16,0,0,0,0,69,43,21,0,0,0,0,365
+12111,Florida,St. Lucie County,351,13,0,0,0,0,67,46,34,0,0,364,0,0
+12113,Florida,Santa Rosa County,258,107,0,0,0,0,80,58,44,0,0,144,221,0
+12115,Florida,Sarasota County,236,129,0,0,0,0,84,58,46,0,0,115,250,0
+12117,Florida,Seminole County,307,56,0,0,0,0,97,54,39,0,0,232,131,0
+12127,Florida,Volusia County,297,68,0,0,0,0,90,53,41,0,0,184,181,0
+12129,Florida,Wakulla County,276,89,0,0,0,0,80,54,41,6,0,124,235,0
+8001,Colorado,Adams County,201,163,1,0,0,0,112,71,49,0,31,176,100,58
+8003,Colorado,Alamosa County,334,31,0,0,0,0,76,49,25,0,0,0,321,44
+8005,Colorado,Arapahoe County,212,151,2,0,0,0,101,71,48,0,0,312,53,0
+8007,Colorado,Archuleta County,302,60,2,0,0,0,115,61,34,0,0,185,157,22
+8013,Colorado,Boulder County,213,149,3,0,0,0,119,71,48,0,0,254,104,7
+8015,Colorado,Chaffee County,68,30,5,0,0,0,108,84,48,0,0,103,0,0
+8019,Colorado,Clear Creek County,214,101,0,0,0,0,100,67,48,0,0,315,0,0
+8029,Colorado,Delta County,179,29,1,0,0,0,103,53,29,0,0,0,189,20
+8031,Colorado,Denver County,184,175,6,0,0,0,115,74,50,0,63,183,119,0
+8035,Colorado,Douglas County,247,111,7,0,0,0,122,71,46,0,0,315,50,0
+8041,Colorado,El Paso County,249,116,0,0,0,0,97,67,46,0,0,338,25,2
+8043,Colorado,Fremont County,338,24,0,0,0,0,77,45,22.5,0,0,0,281,81
+8045,Colorado,Garfield County,252,112,1,0,0,0,131,67,47,0,0,343,22,0
+8047,Colorado,Gilpin County,273,86,1,0,0,0,101,64,46,0,0,360,0,0
+8049,Colorado,Grand County,126,32,0,0,0,0,77,61,44,0,0,158,0,0
+8051,Colorado,Gunnison County,264,99,1,0,0,0,115,67,46,0,0,364,0,0
+8057,Colorado,Jackson County,61,0,0,0,0,0,44,20,8,0,0,0,61,0
+8059,Colorado,Jefferson County,215,137,13,0,0,0,119,84,48,0,0,365,0,0
+8067,Colorado,La Plata County,222,141,2,0,0,0,112,74,48,0,0,348,17,0
+8069,Colorado,Larimer County,185,169,11,0,0,0,119,84,50,0,0,304,61,0
+8077,Colorado,Mesa County,238,127,0,0,0,0,97,64,46,0,0,272,93,0
+8083,Colorado,Montezuma County,278,86,1,0,0,0,101,61,45,0,0,364,1,0
+8093,Colorado,Park County,128,73,2,0,0,0,105,77,48,0,0,203,0,0
+8097,Colorado,Pitkin County,337,27,0,1,0,0,154,43,19,0,0,0,319,46
+8099,Colorado,Prowers County,338,25,0,0,1,1,652,45,27,0,0,0,304,61
+8101,Colorado,Pueblo County,268,96,1,0,0,0,101,64,45,0,0,279,74,12
+8107,Colorado,Routt County,342,23,0,0,0,0,87,42,22,0,0,0,349,16
+8111,Colorado,San Juan County,70,0,0,0,0,0,50,21.5,11,0,0,0,70,0
+8113,Colorado,San Miguel County,303,62,0,0,0,0,94,60,36,0,0,161,166,38
+8123,Colorado,Weld County,163,196,6,0,0,0,119,80,52,0,0,225,140,0
