@@ -1,0 +1,103 @@
+{
+  "lanes": [
+    { "id": "education", "label": "Education" },
+    { "id": "work", "label": "Work" },
+    { "id": "teaching", "label": "Teaching & Debate" }
+  ],
+  "startYear": 2023,
+  "endYear": 2027,
+  "entries": [
+    {
+      "id": "edu-bsc",
+      "lane": "education",
+      "role": "BSc Computer Science",
+      "organisation": "Hong Kong Baptist University",
+      "start": "2023-09",
+      "end": "2027-07",
+      "ongoing": true,
+      "note": "expected graduation"
+    },
+    {
+      "id": "work-tutor",
+      "lane": "work",
+      "role": "Tutor",
+      "organisation": "領航教育",
+      "start": "2023-09",
+      "end": "2024-02",
+      "ongoing": false
+    },
+    {
+      "id": "teach-hkbu-debate",
+      "lane": "teaching",
+      "role": "Member",
+      "organisation": "HKBU Chinese Debate Team",
+      "start": "2023-09",
+      "end": "2026-06",
+      "ongoing": false
+    },
+    {
+      "id": "work-intern",
+      "lane": "work",
+      "role": "IT Intern",
+      "organisation": "Suzhou Greenhulk Bio-Tech Co., Ltd.",
+      "start": "2026-07-04",
+      "end": "2026-08-16",
+      "ongoing": false,
+      "note": "270 hours"
+    },
+    {
+      "id": "teach-yckc2",
+      "lane": "teaching",
+      "role": "Chinese Debate Coach",
+      "organisation": "Yu Chun Keung Memorial College No.2",
+      "start": "2026-09",
+      "end": "present",
+      "ongoing": true
+    },
+    {
+      "id": "teach-scssm",
+      "lane": "teaching",
+      "role": "Debate Tutor",
+      "organisation": "Shak Chung Shan Memorial Catholic Primary School",
+      "start": "2026-09",
+      "end": "2026-12",
+      "ongoing": false
+    },
+    {
+      "id": "teach-ccc",
+      "lane": "teaching",
+      "role": "Interview Class Assistant",
+      "organisation": "CCC Kei Wai Primary School",
+      "start": "2026-10",
+      "end": "2026-11",
+      "ongoing": false
+    },
+    {
+      "id": "teach-farm",
+      "lane": "teaching",
+      "role": "Debate Tutor",
+      "organisation": "Farm Road Government Primary School",
+      "start": "2026-10",
+      "end": "2027-05",
+      "ongoing": false
+    }
+  ],
+  "milestones": [
+    {
+      "date": "2024-05",
+      "label": "Team champion — Inter-collegiate Debate Competition (team result; member did not compete)"
+    },
+    {
+      "date": "2025-05",
+      "label": "Competed and won debates — Hong Kong Intercollegiate Cantonese Debate League"
+    },
+    {
+      "date": "2026-03",
+      "label": "Team champion — Kowloon Cup (team result; member did not compete)"
+    },
+    {
+      "date": "2026-07",
+      "label": "9th place (Degree Category) — PolyU × NuttyShell Cybersecurity CTF"
+    }
+  ]
+}

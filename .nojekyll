@@ -1,0 +1,3 @@
+# This file tells GitHub Pages to skip Jekyll processing so folders
+# starting with an underscore (e.g. none in this repo, but safe to add)
+# are not ignored.

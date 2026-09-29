@@ -1,0 +1,39 @@
+{
+  "clusters": [
+    {
+      "id": 0,
+      "label": "Cluster 0",
+      "counties": "Queens, Cook, Denver",
+      "stats": {
+        "Median AQI": 50.33,
+        "good_ratio_pct": 50.0,
+        "Mean temperature": 12.15
+      }
+    },
+    {
+      "id": 1,
+      "label": "Cluster 1",
+      "counties": "Miami-Dade",
+      "stats": {
+        "Median AQI": 49.00,
+        "good_ratio_pct": 51.0,
+        "Mean temperature": 25.73
+      }
+    },
+    {
+      "id": 2,
+      "label": "Cluster 2",
+      "counties": "Los Angeles, Harris",
+      "stats": {
+        "Median AQI": 70.00,
+        "good_ratio_pct": 10.0,
+        "Mean temperature": 20.18
+      }
+    }
+  ],
+  "metrics": [
+    { "key": "Median AQI", "label": "Median AQI", "domain": [40, 80] },
+    { "key": "good_ratio_pct", "label": "Good-day ratio (%)", "domain": [0, 100] },
+    { "key": "Mean temperature", "label": "Mean temperature", "domain": [10, 30] }
+  ]
+}

@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chin Pang Chow — I turn data into clear, human stories.</title>
+  <meta name="description" content="Personal portfolio of Chin Pang Chow, final-year Computer Science student at Hong Kong Baptist University. Data analysis, visualisation and public speaking." />
+  <meta name="theme-color" content="#f7f5f1" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Chin Pang Chow — Portfolio" />
+  <meta property="og:description" content="I turn data into clear, human stories. Data analysis, visualisation, public speaking." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_HK" />
+
+  <!-- Favicon (inline SVG, no extra request) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23b75d3a'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-size='36' fill='white' font-weight='700'%3EC%3C/text%3E%3C/svg%3E" />
+
+  <!-- Google Fonts: Source Serif 4 (headings) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- D3 v7 (pinned) -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js" defer></script>
+
+  <!-- Page scripts (ES modules) -->
+  <script type="module" src="js/main.js" defer></script>
+  <script type="module" src="js/charts.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="read-progress" id="read-progress" aria-hidden="true"></div>
+
+  <!-- HEADER / NAV -->
+  <header class="site-header" id="site-header">
+    <div class="nav-row">
+      <a class="brand" href="#home" aria-label="Chin Pang Chow — home">Chin Pang Chow</a>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+
+        <nav id="primary-nav" aria-label="Primary">
+          <ul class="nav-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#teaching">Teaching</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-actions">
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme" title="Toggle theme">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+  </header>
+
+  <main id="main">
+
+    <!-- HOME / HERO -->
+    <section id="home" class="hero" aria-labelledby="hero-name">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-text">
+            <p class="eyebrow reveal">Portfolio · Hong Kong Baptist University</p>
+            <h1 id="hero-name" class="reveal">Chin Pang Chow</h1>
+            <p class="positioning reveal">I turn data into clear, human stories.</p>
+            <p class="meta-line reveal">Computer Science student · Data analysis · Visualisation · Public speaking</p>
+            <div class="cta-row reveal">
+              <a class="btn btn-primary" href="#projects">View projects ↓</a>
+              <a class="btn btn-ghost" href="assets/docs/CV_Chin_Pang_Chow.pdf" target="_blank" rel="noopener">Download CV</a>
+            </div>
+          </div>
+
+          <!-- HERO VISUAL PLACEHOLDER -->
+          <!-- Replace assets/img/hero-visual.png with your own image.
+               The placeholder shows the expected filename. -->
+          <figure class="figure-wrap tall hero-visual reveal" aria-label="Hero visual placeholder">
+            <img
+              src="assets/img/hero-visual.png"
+              alt="Hero visual — place a labelled cluster scatter plot here (x = mean temperature, y = Median AQI, coloured by cluster) on a dark background."
+              onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>hero-visual.png</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" aria-labelledby="about-h">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow reveal">About</p>
+          <h2 id="about-h" class="reveal">A short version of me.</h2>
+        </header>
+
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p>I'm a final-year Computer Science student at Hong Kong Baptist University, specialising in Data and Media Communication. I enjoy the moment when a messy table of numbers starts to say something, and the harder job of explaining it so that anyone can follow.</p>
+            <p>I also coach Chinese debate teams in Hong Kong schools and competed in the Hong Kong Intercollegiate Cantonese Debate League. Debating taught me to lead with a claim, back it with evidence and ask "so what?" at every step, which is the same approach I bring to data stories.</p>
+            <p class="eyebrow" style="margin-top:1.6em;">What I work with</p>
+            <ul class="about-list">
+              <li>Python (pandas, scikit-learn, matplotlib)</li>
+              <li>SQL (Oracle)</li>
+              <li>Exploratory data analysis</li>
+              <li>Data visualisation</li>
+              <li>Database design</li>
+              <li>Public speaking and coaching</li>
+            </ul>
+          </div>
+
+          <figure class="figure-wrap portrait reveal" aria-label="Profile photo placeholder">
+            <img
+              src="assets/img/profile-photo.jpg"
+              alt="Profile photo — half-length portrait, plain background."
+              onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>profile-photo.jpg</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
+          </figure>
+        </div>
+
+        <!-- SKILLS-IN-CONTEXT MATRIX -->
+        <div class="reveal" style="margin-top: clamp(36px, 5vw, 56px);">
+          <h3>Skills in context</h3>
+          <p>Where each skill actually showed up in my projects and work — not a self-rating, just where it's been used.</p>
+          <div class="skills-matrix-wrap">
+            <div class="skills-matrix-svg-wrap" id="skills-matrix" role="img" aria-label="Skills-in-context matrix: rows are skills, columns are places of use, a filled dot means the skill was used there."></div>
+            <p class="skills-matrix-caption">A filled dot means the skill was used in that context. Hover or focus a row to highlight it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" aria-labelledby="projects-h">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow reveal">Projects</p>
+          <h2 id="projects-h" class="reveal">Three projects, each told as a story.</h2>
+          <p class="reveal projects-intro">Three projects, each told as a story: the question, the data, what I found, and what I'd do differently.</p>
+        </header>
+
+        <!-- PROJECT 1 -->
+        <article class="case-study" aria-labelledby="p1-title">
+          <header class="case-head">
+            <p class="eyebrow">Project 1 · COMP3115</p>
+            <h3 id="p1-title">Does Weather Explain Air Quality?</h3>
+            <p class="case-sub">Clustering US counties by air quality and climate · Group project, COMP3115 · Mar–Apr 2026 · My role: clustering analysis</p>
+          </header>
+
+          <!-- Hero visual -->
+          <figure class="figure-wrap tall reveal" aria-label="Project 1 cluster scatter placeholder">
+            <img
+              src="assets/img/p1-cluster-scatter.png"
+              alt="Project 1 — cluster scatter plot of six US counties (x = mean temperature, y = Median AQI), coloured by cluster, with county names labelled."
+              onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>p1-cluster-scatter.png</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
+          </figure>
+
+          <div class="case-body reveal">
+            <h4>The question</h4>
+            <p>Los Angeles is famous for smog. Miami is hotter and more humid. If weather drove air quality, hot places should have worse air. I wanted to test whether counties with similar weather also have similar air quality.</p>
+
+            <h4>The data</h4>
+            <p>Air quality: EPA annual AQI summaries for 2025. I used three measures: Median AQI, 90th Percentile AQI, and the share of days rated "Good" (good ratio).</p>
+            <p>Weather: NOAA Local Climatological Data for 2025 from one airport station per state, summarised into mean temperature, mean humidity and total precipitation.</p>
+            <p>Counties: Six large counties from six states: Los Angeles (CA), Harris (TX), Queens (NY), Cook (IL), Miami-Dade (FL) and Denver (CO).</p>
+
+            <!-- Data flow figure -->
+            <figure class="figure-wrap wide" aria-label="Project 1 data flow placeholder">
+              <img
+                src="assets/img/p1-data-flow.png"
+                alt="Project 1 data flow diagram — two sources (EPA, NOAA) merge by state into a 6-row by 6-feature table, then standardise and run K-Means."
+                onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>p1-data-flow.png</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
+              <figcaption class="case-figure-caption">Two sources (EPA, NOAA) → merge by state → 6 rows × 6 features → standardise → K-Means.</figcaption>
+            </figure>
+
+            <h4>What I did</h4>
+            <ul>
+              <li>Cleaned and combined the two sources, filling missing weather values with the average of that measure.</li>
+              <li>Checked correlations first, to see whether weather and air quality moved together before clustering anything.</li>
+              <li>Explored each variable with histograms, boxplots and a temperature-vs-AQI scatter plot.</li>
+              <li>Scaled every feature to 0–1. Total rainfall ranges in the hundreds to over a thousand, while the other variables are far smaller, so without scaling rainfall would have dominated the clustering.</li>
+              <li>Ran K-Means with k = 3.</li>
+            </ul>
+
+            <h4>What I found</h4>
+            <p>Air quality measures move together; weather barely moves with them. Median AQI and 90th Percentile AQI correlate at 0.96, and the good-day ratio moves in the opposite direction (−0.91 and −0.83). But mean temperature and Median AQI correlate at only 0.17.</p>
+
+            <!-- CORRELATION HEATMAP -->
+            <div class="chart-card" role="img" aria-label="Correlation heatmap of six air-quality and weather variables, blue for negative and red for positive correlations, centred at zero.">
+              <p class="chart-summary">Air quality measures cluster together; temperature barely touches them.</p>
+              <div class="chart-svg-wrap" id="correlation-heatmap"></div>
+              <div class="chart-legend">
+                <span><span class="legend-bar"></span>−1 (negative) &nbsp;→&nbsp; 0 &nbsp;→&nbsp; +1 (positive)</span>
+              </div>
+              <details style="margin-top:12px;">
+                <summary style="cursor:pointer;color:var(--c-ink-soft);font-size:0.9rem;">Show data values</summary>
+                <div id="correlation-table" style="margin-top:10px;"></div>
+              </details>
+            </div>
+
+            <p>Three clusters, three different stories:</p>
+
+            <!-- Cluster table (responsive wrapper) -->
+            <div class="cluster-table-wrap">
+              <table class="cluster-table">
+                <thead>
+                  <tr>
+                    <th>Cluster</th>
+                    <th>Counties</th>
+                    <th>Median AQI</th>
+                    <th>Good-day ratio</th>
+                    <th>Mean temp</th>
+                    <th>Character</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>0</td>
+                    <td>Queens, Cook, Denver</td>
+                    <td>50.3</td>
+                    <td>0.50</td>
+                    <td>12.2</td>
+                    <td>Cooler, moderate air</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>Miami-Dade</td>
+                    <td>49.0</td>
+                    <td>0.51</td>
+                    <td>25.7</td>
+                    <td>Hottest, wettest, relatively clean</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Los Angeles, Harris</td>
+                    <td>70.0</td>
+                    <td>0.10</td>
+                    <td>20.2</td>
+                    <td>Warm, worst air</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- CLUSTER PROFILES (small multiples bar chart) -->
+            <div class="chart-card" role="img" aria-label="Cluster profile bars comparing Median AQI, good-day ratio and mean temperature across three clusters, each metric on its own scale.">
+              <p class="chart-summary">Cluster profiles — each metric on its own scale so bars stay comparable across clusters.</p>
+              <div id="cluster-profiles"></div>
+            </div>
+
+            <p><strong>The key insight:</strong> Miami-Dade and the Los Angeles/Harris group are all warm and humid, yet Miami-Dade has far cleaner air. The clustering separates them because of how many "Good" days they have, not because of temperature. Weather explains only part of the story. Traffic, industry, local geography and wildfire smoke probably explain the rest.</p>
+
+            <h4>What I'd do differently</h4>
+            <ul>
+              <li>Six counties is a tiny sample, so the correlations are suggestive, not conclusive. Choosing k = 3 was also a practical choice (two counties per cluster on average), not a statistically tested one.</li>
+              <li>One airport station per state is a rough proxy for a county's climate.</li>
+              <li>Next time I'd use many more counties and add traffic and industry data to test the "human factors" idea directly.</li>
+            </ul>
+
+            <h4>Tools</h4>
+            <p>Python, pandas, scikit-learn (MinMaxScaler, KMeans), matplotlib</p>
+          </div>
+
+          <a class="back-to-top" href="#projects">↑ Back to top of projects</a>
+        </article>
+
+        <!-- PROJECT 2 -->
+        <article class="case-study" aria-labelledby="p2-title">
+          <header class="case-head">
+            <p class="eyebrow">Project 2 · COMP3115</p>
+            <h3 id="p2-title">Two Dimensions of Dirty Air</h3>
+            <p class="case-sub">Reducing 14 air-quality indicators with PCA · Group project, COMP3115 · Mar–Apr 2026 · My role: PCA and clustering in PCA space</p>
+          </header>
+
+          <figure class="figure-wrap tall reveal" aria-label="Project 2 PCA scatter placeholder">
+            <img
+              src="assets/img/p2-pca-scatter.png"
+              alt="Project 2 — PCA scatter plot of counties on PC1 (x) and PC2 (y), coloured by cluster, with an outlier labelled."
+              onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>p2-pca-scatter.png</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
+          </figure>
+
+          <div class="case-body reveal">
+            <h4>The question</h4>
+            <p>County air-quality data has many columns that say similar things: days rated Good or Unhealthy, median and maximum AQI, and the number of days each pollutant was the main driver. Can those 14 columns be boiled down to a few dimensions that describe how US counties differ?</p>
+
+            <h4>The data</h4>
+            <p>EPA annual air-quality summaries for counties across the six states, with 14 indicators per county, including AQI category days, AQI maximum, 90th percentile and median, and days dominated by CO, NO₂, ozone, PM2.5 and PM10.</p>
+
+            <h4>What I did</h4>
+            <ul>
+              <li>Standardised all 14 indicators (z-scores), so days and AQI points could be compared fairly.</li>
+              <li>Ran a full PCA to see how much information each component keeps.</li>
+              <li>Projected counties onto the first two components and plotted them.</li>
+              <li>Used the elbow method to choose four clusters, then ran K-Means in this reduced space.</li>
+              <li>Built a biplot to see which original indicators push each component.</li>
+            </ul>
+
+            <h4>What I found</h4>
+            <p>One dimension carries about a third of the information. The first component alone explains roughly 36% of the variance, and the first two together about half. About five components are needed to reach 80%.</p>
+
+            <figure class="figure-wrap tall" aria-label="Project 2 scree plot placeholder">
+              <img
+                src="assets/img/p2-scree.png"
+                alt="Project 2 — scree plot with bars for each principal component's variance explained, an overlaid line for cumulative variance, and a dashed 80% reference line."
+                onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>p2-scree.png</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
+              <figcaption class="case-figure-caption">Two components tell about half the story, five tell 80%.</figcaption>
+            </figure>
+
+            <p>The two dimensions have clear meanings:</p>
+            <ul>
+              <li><strong>PC1 – general air quality:</strong> driven by the number of PM2.5 days, median AQI and unhealthy-air indicators. Counties on one side have generally cleaner air, counties on the other side have generally worse air.</li>
+              <li><strong>PC2 – extreme events:</strong> driven by maximum AQI and upper-percentile values. A county can have a decent typical year and still suffer a few severe pollution days.</li>
+            </ul>
+
+            <figure class="figure-wrap tall" aria-label="Project 2 biplot placeholder">
+              <img
+                src="assets/img/p2-biplot.png"
+                alt="Project 2 — biplot of original variables as arrows projected onto PC1 and PC2; PC1 = everyday air quality, PC2 = extreme pollution events."
+                onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>p2-biplot.png</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
+              <figcaption class="case-figure-caption">PC1 = everyday air quality, PC2 = extreme pollution events.</figcaption>
+            </figure>
+
+            <figure class="figure-wrap wide" aria-label="Project 2 elbow plot placeholder">
+              <img
+                src="assets/img/p2-elbow.png"
+                alt="Project 2 — elbow plot of within-cluster sum of squares against number of clusters, with an elbow at k = 4."
+                onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>p2-elbow.png</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
+            </figure>
+
+            <p><strong>The key insight:</strong> Counties differ in two separate ways. Some are bad every day, others are mostly fine but hit by severe episodes. Looking only at average AQI would hide the second group.</p>
+
+            <h4>What I'd do differently</h4>
+            <ul>
+              <li>Two components keep only about half the variance, so the 2D picture leaves out a lot. I'd check a third component too.</li>
+              <li>One extreme outlier county stretches the plot and is worth investigating separately (for example, a wildfire year) rather than leaving it in the picture unexplained.</li>
+            </ul>
+
+            <h4>Tools</h4>
+            <p>Python, pandas, scikit-learn (StandardScaler, PCA, KMeans), matplotlib, seaborn</p>
+          </div>
+
+          <a class="back-to-top" href="#projects">↑ Back to top of projects</a>
+        </article>
+
+        <!-- PROJECT 3 -->
+        <article class="case-study" aria-labelledby="p3-title">
+          <header class="case-head">
+            <p class="eyebrow">Project 3 · Internship</p>
+            <h3 id="p3-title">From Spreadsheet to Shop-Floor Report</h3>
+            <p class="case-sub">Logistics and inventory reporting · IT internship, Suzhou Greenhulk Bio-Tech · Jul–Aug 2026 (270 hours)</p>
+          </header>
+
+          <figure class="figure-wrap tall reveal" aria-label="Project 3 mock dashboard placeholder">
+            <img
+              src="assets/img/p3-mock-dashboard.png"
+              alt="Project 3 — recreated mock dashboard with three small charts: raw-material inventory, packaged products, and pending orders. Recreated with sample data; company data is confidential."
+              onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>p3-mock-dashboard.png</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
+            <figcaption class="case-figure-caption">Recreated with sample data; company data is confidential.</figcaption>
+          </figure>
+
+          <div class="case-body reveal">
+            <h4>The context</h4>
+            <p>The company runs a factory that makes, packages and ships cleaning products and pharmaceuticals. Managers need to know, at a glance, how much raw material is on hand, how much product has been packed, and how many orders are waiting.</p>
+
+            <h4>My role</h4>
+            <p>As an IT intern working under senior colleagues, I recorded the logistics and inventory figures (raw materials, packaged products, order counts), and used them to produce basic visual reports so the team could monitor factory output more easily. I also learned the factory's internal software systems from the senior IT staff.</p>
+
+            <h4>How the reports were built</h4>
+            <ul>
+              <li><strong>Record:</strong> Log raw material quantities, packaged product volumes and order numbers.</li>
+              <li><strong>Tidy:</strong> Keep the records consistent so they can be compared day to day.</li>
+              <li><strong>Show:</strong> Turn the tables into simple charts that answer one question each.</li>
+            </ul>
+
+            <figure class="figure-wrap wide" aria-label="Project 3 process diagram placeholder">
+              <img
+                src="assets/img/p3-process.png"
+                alt="Project 3 — three-step process diagram: Record → Tidy → Show, with an icon for each step."
+                onerror="this.style.display='none';this.insertAdjacentHTML('afterend',this.outerHTML.replace('<img','<div').replace('>',' class=\'img-placeholder\'><div class=\'ph-filename\'>p3-process.png</div><div class=\'ph-hint\'>Replace with image</div></div>'));" />
+            </figure>
+
+            <h4>What I learned</h4>
+            <p>Good reporting starts with the reader's question, not the chart. IT support means understanding how people actually use the numbers every day, and working across departments matters as much as technical skill.</p>
+
+            <h4>Tools</h4>
+            <p>Spreadsheet and data-recording tools, factory management software, basic charting</p>
+          </div>
+
+          <a class="back-to-top" href="#projects">↑ Back to top of projects</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" aria-labelledby="exp-h">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow reveal">Experience</p>
+          <h2 id="exp-h" class="reveal">A four-year arc.</h2>
+          <p class="reveal">Each lane is a thread — study, work, and coaching in parallel. Hover or focus a bar for details.</p>
+        </header>
+
+        <div class="timeline-toggle" role="group" aria-label="Timeline view toggle">
+          <button id="timeline-view-chart" aria-pressed="true">Chart</button>
+          <button id="timeline-view-table" aria-pressed="false">View as table</button>
+        </div>
+
+        <div class="timeline-wrap reveal">
+          <div class="timeline-svg-wrap" id="timeline" role="img" aria-label="Horizontal timeline 2023 to 2027 with three lanes — Education, Work, Teaching & Debate — showing each role as a coloured bar."></div>
+          <div id="timeline-tooltip" class="timeline-tooltip" role="status" aria-live="polite"></div>
+          <div class="timeline-legend">
+            <span><span class="swatch" style="background: var(--c-cat-1);"></span>Education</span>
+            <span><span class="swatch" style="background: var(--c-cat-2);"></span>Work</span>
+            <span><span class="swatch" style="background: var(--c-cat-3);"></span>Teaching &amp; Debate</span>
+            <span>★ Milestone</span>
+          </div>
+        </div>
+
+        <div class="timeline-vertical reveal" id="timeline-vertical"></div>
+
+        <div class="timeline-table-wrap reveal" id="timeline-table-wrap">
+          <table class="timeline-table">
+            <thead>
+              <tr><th>Period</th><th>Role</th><th>Organisation</th><th>Lane</th></tr>
+            </thead>
+            <tbody id="timeline-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEACHING & COMMUNICATION -->
+    <section id="teaching" aria-labelledby="teaching-h">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow reveal">Teaching &amp; Communication</p>
+          <h2 id="teaching-h" class="reveal">Explaining things clearly, out loud.</h2>
+        </header>
+
+        <div class="reveal" style="max-width:70ch;">
+          <p>Alongside my degree, I coach Chinese debate teams in three schools and help primary students prepare for secondary-school interviews. My job is to help students build an argument, listen to the other side and respond under pressure.</p>
+          <p>As a member of the HKBU Chinese Debate Team (2023–26), I competed in the Hong Kong Intercollegiate Cantonese Debate League (2024–25) and won my debates. The team also won the Inter-collegiate Debate Competition (2023–24) and the Kowloon Cup (2025–26).</p>
+          <p><strong>How this connects to my data work:</strong> A debate speech and a data story follow the same shape: a clear claim, evidence that supports it, and an answer to "so what?"</p>
+        </div>
+
+        <div class="school-grid reveal">
+          <div class="school-card">
+            <span class="school-icon" aria-hidden="true">余</span>
+            <div>
+              <h4>Yu Chun Keung Memorial College No.2</h4>
+              <p class="school-period">Sep 2026 – Present · Chinese Debate Coach</p>
+            </div>
+          </div>
+          <div class="school-card">
+            <span class="school-icon" aria-hidden="true">石</span>
+            <div>
+              <h4>Shak Chung Shan Memorial Catholic Primary School</h4>
+              <p class="school-period">Sep – Dec 2026 · Debate Tutor</p>
+            </div>
+          </div>
+          <div class="school-card">
+            <span class="school-icon" aria-hidden="true">基</span>
+            <div>
+              <h4>CCC Kei Wai Primary School</h4>
+              <p class="school-period">Oct – Nov 2026 · Interview Class Assistant</p>
+            </div>
+          </div>
+          <div class="school-card">
+            <span class="school-icon" aria-hidden="true">農</span>
+            <div>
+              <h4>Farm Road Government Primary School</h4>
+              <p class="school-period">Oct 2026 – May 2027 · Debate Tutor</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contact-h">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow reveal">Contact</p>
+          <h2 id="contact-h" class="reveal">Let's talk.</h2>
+        </header>
+
+        <div class="reveal">
+          <p>Email: <a href="mailto:chowtommy1122@gmail.com">chowtommy1122@gmail.com</a></p>
+          <p>GitHub: <a href="https://github.com/[placeholder]" target="_blank" rel="noopener">[link]</a> · LinkedIn: <a href="https://www.linkedin.com/in/[placeholder]" target="_blank" rel="noopener">[link]</a></p>
+
+          <div class="contact-row">
+            <a class="btn btn-primary" href="mailto:chowtommy1122@gmail.com">Email me</a>
+            <a class="btn btn-ghost" href="assets/docs/CV_Chin_Pang_Chow.pdf" target="_blank" rel="noopener">Download CV</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <span>© 2026 Chin Pang Chow</span>
+      <span>Built with the help of generative AI; prompts and conversation logs are provided with the assignment submission.</span>
+      <a href="#home">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged image" tabindex="-1">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">×</button>
+    <img id="lightbox-img" alt="" />
+  </div>
+</body>
+</html>
